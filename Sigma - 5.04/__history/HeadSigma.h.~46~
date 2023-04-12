@@ -1,0 +1,112 @@
+#include <vcl.h>
+#define MAX_DIRECT 1000
+#define MAX_FILE 5000
+#define MaxObj 5000
+// ---------------------------------------------------------------------------
+struct FrameSigmaSet
+{
+	WORD **Kadr;		//Cам кадр
+	WORD **FiltKadr;    //Фильтрованный кадр ?
+	float x,y;			//Локализованные координаты
+	int Is;				//Яркость после лок?
+	int Is2;
+	int N;				//Количество пикселей после лок?
+	int N2;
+	int Ispic;			//Самый яркий пиксель
+	int Height;         //Высота кадра
+	int Width;          //Ширина кадра
+	int HWframe;        //Размер окна
+	WORD **Frame;		//Окошко для исследования
+	float ms;			//Экспозиция (из названия файла)
+	float mm;			//ММ Коллиматора (из названия файла)
+	int CMmMs;          //Принадлежность к координате
+};
+
+struct BoxMmMsStr
+{
+	float x,y;			//Локализованные координаты
+	float ms;			//Экспозиция (из названия файла)
+	float mm;			//ММ Коллиматора (из названия файла)
+	int ColKad;         //Количество обработанных кадров
+};
+
+//создание структуры для хранения данных в отчете
+struct FullSigmaTable
+{
+	float x,y;			//Локализованные координаты
+	float xS,yS;        //Координаты от посчитанной сигмы
+	int Is;				//Интегральная яркость после локализации по фрагменту
+	float Mu;           //Точность посчитанной сигмы
+	float ms;			//МС Экспозиция (из названия файла)
+	float mm;			//ММ Коллиматора (из названия файла)
+	float SigX, SigY;   //Сигмы по Х и У
+	AnsiString Names;	//Имя файла для извлечеия мм и мс
+	int mark;			//Принадлежность к определенной группе (сектору)
+	int IsF;				//Интегральная яркость после правильной локализации по фрагменту (Строилов)
+};
+
+struct SBoxXY
+{
+	float x, y;
+	float ms;
+	float mm;
+	int N;
+	TColor ColGraf;
+};
+
+#ifdef GLOBVAL
+	AnsiString DirNames[MAX_DIRECT];
+	AnsiString FileNames[MAX_FILE];
+	int DirCount;
+	int FilesCount;
+	FrameSigmaSet SigmaSet;
+	int F4Lines;
+	int Is_fot;
+	float BufLOCdSKO;
+	float BufLOC1;
+	int MeanPor;
+	WORD **BlackKadr;
+	bool BKflag = false;
+
+	unsigned int  NelLoc[MaxObj], BRloc[MaxObj];
+	float Xloc[MaxObj], Yloc[MaxObj];
+	unsigned short Nobj;
+
+	void FindDirectories(AnsiString FindDir, AnsiString MaskF);     //Поиск папок
+	void FindFiles(AnsiString MaskF);								//Поиск файлов в папках
+	void IdentifFromName(char *name, char *Ind1, char *Ind2, float *Rez);
+	void LocalNI (unsigned short *DATA_ALLOC, int Width, int Height, int BRmin, int BRmax, int NPmin, int NPmax);
+	void SelectMaxObject(WORD **Kadr, int Wsize, int Hsize, float Xcor, float Ycor, bool SaveFrame);
+	void Filter4Lines(int koff, WORD **Kadr, int Wsize, int Hsize);
+
+#else
+	extern AnsiString DirNames[MAX_DIRECT];
+	extern AnsiString FileNames[MAX_FILE];
+	extern int DirCount;
+	extern int FilesCount;
+	extern FrameSigmaSet SigmaSet;
+	extern int F4Lines;
+	extern int Is_fot;
+	extern float BufLOCdSKO;
+	extern float BufLOC1;
+	extern int MeanPor;
+	extern WORD **BlackKadr;
+	extern bool BKflag = false;
+
+	extern unsigned int NelLoc[MaxObj], BRloc[MaxObj];
+	extern float Xloc[MaxObj], Yloc[MaxObj];
+	extern unsigned short Nobj;
+
+	extern void FindDirectories(AnsiString FindDir, AnsiString MaskF);	//Поиск папок
+	extern void FindFiles(AnsiString MaskF);							//Поиск файлов в папках
+	extern void IdentifFromName(char *name, char *Ind1, char *Ind2, float *Rez);
+	extern void LocalNI (unsigned short *DATA_ALLOC, int Width, int Height, int BRmin, int BRmax, int NPmin, int NPmax);
+	extern void SelectMaxObject(WORD **Kadr, int Wsize, int Hsize, float Xcor, float Ycor, bool SaveFrame);
+	extern void Filter4Lines(int koff, WORD **Kadr, int Wsize, int Hsize);
+#endif
+
+
+//Временные изменения: (DELETE NOW)
+//
+//1. Прибавление удаленной пороговой составляющей значимым пикселям изображения  // Внесение решено оставить
+

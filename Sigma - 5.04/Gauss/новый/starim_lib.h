@@ -1,0 +1,1 @@
+int __declspec(dllimport) LocalGauss(int *xP, int *yP, int *BrP, int NumPts, int NumIt, int NumTr, double *xc, double *yc, double *sx, double *sy, double *muG);

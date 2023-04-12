@@ -1,0 +1,13 @@
+void OpenWord(bool Visible);
+void CloseWord(void);
+void AddDoc(void);
+void SaveDoc(AnsiString Name);
+void CloseDoc(void);
+void AddParagraph(AnsiString Text);
+void AddPicture(AnsiString Name);
+void AddTable(int Nrow, int Ncol);
+void SetCell(int Nrow, int Ncol, AnsiString str);
+void SetTextFormat(float TextSize, long IsBold, long IsItalic,
+						long IsUnderline, long TypeAlign);
+void CellText(int Nrow, int Ncol);
+

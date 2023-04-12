@@ -1,0 +1,6 @@
+ќтличи€ с новым в 2х переменных:
+int NumIt = 5...10 - кол-во приближений
+int NumTr = 10...100 значение цикла на х и у (т.е. 100х100=10000 итераций), на сколько частей дробитс€ цикл
+
+—тарый хедр:
+int __declspec(dllimport) LocalGauss(int *xP, int *yP, int *BrP, int NumPts, double *xc, double *yc, double *sx, double *sy, double *muG);
