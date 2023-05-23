@@ -1,5 +1,4 @@
 //---------------------------------------------------------------------------
-
 #ifndef SigmaU1H
 #define SigmaU1H
 //---------------------------------------------------------------------------
@@ -16,6 +15,7 @@
 #include <Menus.hpp>
 #include <Dialogs.hpp>
 
+#include <VCLTee.Chart.hpp>
 #include "Chart.hpp"
 #include "TeEngine.hpp"
 #include "TeeProcs.hpp"
@@ -26,6 +26,8 @@
 #include <DockTabSet.hpp>
 #include <Tabs.hpp>
 #include <ImgList.hpp>
+#include <System.ImageList.hpp>
+#include <VclTee.TeeGDIPlus.hpp>
 //#include <VclTee.TeeGDIPlus.hpp>
 //int __declspec(dllimport) LocalGauss(int *xP, int *yP, int *BrP, int NumPts, int NumIt, int NumTr, double *xc, double *yc, double *sx, double *sy, double *muG);
 int __declspec(dllimport) LocalGauss(int *xP, int *yP, int *BrP, int NumPts, int NumIt, int NumTr, int flagCInit,
@@ -289,9 +291,14 @@ __published:	// IDE-managed Components
 	TCheckBox *CheckBoxNF;
 	TEdit *EditNFmin;
 	TEdit *EditNFmax;
-	TEdit *EditMNK;
 	TLabel *Label63;
 	TLabel *LabelMNK;
+	TEdit *EditMNK;
+	TCheckBox *CheckBoxNframe;
+	TLabel *Label64;
+	TComboBox *ComboBoxMainPoint;
+	TLabel *Label65;
+	TComboBox *ComboBox1;
 	void __fastcall IniSave(String dir);
 	void __fastcall CheckBox1Click(TObject *Sender);
 	void __fastcall CheckBox2Click(TObject *Sender);

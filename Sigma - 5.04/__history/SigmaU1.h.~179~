@@ -295,6 +295,8 @@ __published:	// IDE-managed Components
 	TCheckBox *CheckBoxNframe;
 	TLabel *Label64;
 	TComboBox *ComboBoxMainPoint;
+	TLabel *Label65;
+	TComboBox *ComboBox1;
 	void __fastcall IniSave(String dir);
 	void __fastcall CheckBox1Click(TObject *Sender);
 	void __fastcall CheckBox2Click(TObject *Sender);

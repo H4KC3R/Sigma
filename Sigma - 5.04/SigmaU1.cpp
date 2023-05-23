@@ -1,13 +1,13 @@
 ﻿//---------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-//////////////////////-- Версия 5.04 --//////////////////////
+//////////////////////-- Версия 5.05 --//////////////////////
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
 #include <vcl.h>
 #pragma hdrstop
-#include <math.h>
+#include <cmath>
 #include <System.hpp>
 #include <iostream>
 #include <fstream>
@@ -28,12 +28,12 @@
 #pragma package(smart_init)
 #pragma link "Word_XP_srvr"
 //#pragma link "Word_2K_SRVR"
-#pragma link "BubbleCh"
+//#pragma link "BubbleCh"
 #pragma resource "*.dfm"
-#pragma link "Chart"
-#pragma link "TeEngine"
-#pragma link "TeeProcs"
-#pragma link "Series"
+//#pragma link "Chart"
+//#pragma link "TeEngine"
+//#pragma link "TeeProcs"
+//#pragma link "Series"
 //#pragma link "FrontPage_XP_srvr"
 #pragma resource "*.dfm"
 #include <algorithm>
@@ -353,8 +353,8 @@ void BinFrameSigma()    //заменить 2 на коэф бинировани�
 
 	n = 0;
 	for (i = 0; i < SigmaSet.HWframe; i++)
-	for (j = 0; j < SigmaSet.HWframe; j++)
-		SigmaSet.Frame[i][j] = BufKad2[n++];
+		for (j = 0; j < SigmaSet.HWframe; j++)
+			SigmaSet.Frame[i][j] = BufKad2[n++];
 
 	//Проверка - вывод кадра
 //	FILE *streG = fopen(AnsiString("C:\\Cybertron\\Programms\\BinK_"+IntToStr(SigmaSet.HWframe)+".dat").c_str(), "wb");
@@ -1660,8 +1660,8 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 								SetCell(ProgressBar1->Position+3, 9, FloatToStr(FixRoundTo(BufLOCdSKO,-1)));
 								SetCell(ProgressBar1->Position+3, 10, IntToStr(F4Lines));
 								SetCell(ProgressBar1->Position+3, 11, IntToStr(SigmaSet.Ispic));
-								SetCell(ProgressBar1->Position+3, 12, FloatToStr(FixRoundTo(pow(2.512,BufReport10)*IYasa,-1)));
-								SetCell(ProgressBar1->Position+3, 13, FloatToStr(FixRoundTo(pow(2.512,BufReport10)*SigmaSet.Is2,-1)));
+								SetCell(ProgressBar1->Position+3, 12, FloatToStr(FixRoundTo(pow(2.512f,BufReport10)*IYasa,-1)));
+								SetCell(ProgressBar1->Position+3, 13, FloatToStr(FixRoundTo(pow(2.512f,BufReport10)*SigmaSet.Is2,-1)));
 							}
 
 
@@ -2016,12 +2016,14 @@ void ReportSort(FullSigmaTable *FullSigmaFS, int MeterFS, int PorogPxFS,
 float ConvMM (float a)
 {
 	float b;
-	b =(a - StrToFloat(Form1->Edit18->Text))*(StrToFloat(Form1->Edit45->Text)*StrToFloat(Form1->Edit45->Text))/(StrToFloat(Form1->Edit46->Text)*StrToFloat(Form1->Edit46->Text));
+	b = (a - StrToFloat(Form1->Edit18->Text)) * (StrToFloat(Form1->Edit45->Text)
+		* StrToFloat(Form1->Edit45->Text)) / (StrToFloat(Form1->Edit46->Text)
+		* StrToFloat(Form1->Edit46->Text));
 	return b;
 }
 
 int qfloatX(const void *pa, const void *pb) {
-    float a = *(float*)pa, b = *(float*)pb;
+	float a = *(float*)pa, b = *(float*)pb;
     if (a > b) return 1;
     if (a < b) return -1;
     return 0;

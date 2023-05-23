@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Sigma - 5.03'
-  ClientHeight = 612
-  ClientWidth = 854
+  Caption = 'Sigma - 5.04'
+  ClientHeight = 603
+  ClientWidth = 848
   Color = clInactiveBorder
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -3128,7 +3128,6 @@ object Form1: TForm1
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
   Menu = MainMenu1
-  OldCreateOrder = False
   Position = poScreenCenter
   OnClick = FormClick
   OnClose = FormClose
@@ -3136,9 +3135,8 @@ object Form1: TForm1
   OnResize = FormResize
   OnShow = FormShow
   DesignSize = (
-    854
-    612)
-  PixelsPerInch = 96
+    848
+    603)
   TextHeight = 16
   object Label18: TLabel
     Left = 16
@@ -3178,11 +3176,12 @@ object Form1: TForm1
   end
   object Label65: TLabel
     Left = 688
-    Top = 571
+    Top = 562
     Width = 92
     Height = 16
     Anchors = [akLeft, akBottom]
     Caption = #1047#1085#1072#1082' '#1090#1072#1073#1091#1083#1103#1094#1080#1080
+    ExplicitTop = 571
   end
   object ChartPhotogrammetry: TChart
     Left = 735
@@ -3238,6 +3237,7 @@ object Form1: TForm1
     Color = clWhite
     TabOrder = 21
     Visible = False
+    DefaultCanvas = 'TGDIPlusCanvas'
     PrintMargins = (
       30
       15
@@ -3245,62 +3245,49 @@ object Form1: TForm1
       15)
     ColorPaletteIndex = 13
     object PointSeries1: TPointSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       ClickableLine = False
       Pointer.Brush.Color = 2209840
       Pointer.Brush.Gradient.EndColor = 10708548
       Pointer.Gradient.EndColor = 10708548
       Pointer.InflateMargins = True
       Pointer.Style = psCircle
-      Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series18: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 16744448
+      Brush.BackColor = clDefault
       LinePen.Color = 16744448
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series19: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 16744448
+      Brush.BackColor = clDefault
       LinePen.Color = 16744448
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series20: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 16744448
+      Brush.BackColor = clDefault
       LinePen.Color = 16744448
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
@@ -3335,6 +3322,7 @@ object Form1: TForm1
     Color = clWhite
     TabOrder = 19
     Visible = False
+    DefaultCanvas = 'TGDIPlusCanvas'
     PrintMargins = (
       15
       19
@@ -3396,6 +3384,7 @@ object Form1: TForm1
     Color = clWhite
     TabOrder = 18
     Visible = False
+    DefaultCanvas = 'TGDIPlusCanvas'
     PrintMargins = (
       30
       15
@@ -3403,10 +3392,7 @@ object Form1: TForm1
       15)
     ColorPaletteIndex = 13
     object Series14: TPointSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       ClickableLine = False
       Pointer.Brush.Color = 539281715
       Pointer.Brush.Gradient.EndColor = 10708548
@@ -3414,17 +3400,13 @@ object Form1: TForm1
       Pointer.InflateMargins = True
       Pointer.Pen.Visible = False
       Pointer.Style = psCircle
-      Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series15: TPointSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       ClickableLine = False
       Pointer.Brush.Color = 553626178
       Pointer.Brush.Gradient.EndColor = 3513587
@@ -3432,7 +3414,6 @@ object Form1: TForm1
       Pointer.InflateMargins = True
       Pointer.Pen.Visible = False
       Pointer.Style = psCircle
-      Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
@@ -3484,12 +3465,10 @@ object Form1: TForm1
     Color = clWhite
     TabOrder = 17
     Visible = False
+    DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
     object Series10: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 16748574
       Title = 'Sigma X'
       Brush.BackColor = clDefault
@@ -3505,10 +3484,7 @@ object Form1: TForm1
       YValues.Order = loNone
     end
     object Series11: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 4738745
       Title = 'Sigma Y'
       Brush.BackColor = clDefault
@@ -3524,10 +3500,7 @@ object Form1: TForm1
       YValues.Order = loNone
     end
     object Series12: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 2403842
       Title = #1048#1090#1086#1075
       Brush.BackColor = clDefault
@@ -3544,10 +3517,7 @@ object Form1: TForm1
       YValues.Order = loNone
     end
     object Series13: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       SeriesColor = 64
       Title = #1040#1087#1087#1088#1086#1082#1089#1080#1084#1072#1094#1080#1103
       Brush.BackColor = clDefault
@@ -3556,7 +3526,6 @@ object Form1: TForm1
       LinePen.SmallSpace = 1
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
@@ -3581,7 +3550,6 @@ object Form1: TForm1
     BottomAxis.ExactDateTime = False
     BottomAxis.Grid.Color = 14079702
     BottomAxis.Increment = 5.000000000000000000
-    BottomAxis.LabelsFont.Height = -13
     BottomAxis.LabelsSeparation = 0
     BottomAxis.LabelStyle = talText
     BottomAxis.Maximum = 24.000000000000000000
@@ -3595,7 +3563,7 @@ object Form1: TForm1
     LeftAxis.ExactDateTime = False
     LeftAxis.Grid.Color = 14079702
     LeftAxis.Increment = 0.100000000000000000
-    LeftAxis.LabelsFont.Height = -16
+    LeftAxis.LabelsFormat.Font.Height = -16
     LeftAxis.LabelsSeparation = 0
     LeftAxis.Maximum = 10.000000000000000000
     LeftAxis.Title.Caption = 'Sigma'
@@ -3606,12 +3574,10 @@ object Form1: TForm1
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 6
+    DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
     object Series1: TPointSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       ClickableLine = False
       Pointer.Brush.Gradient.EndColor = 10708548
       Pointer.Gradient.EndColor = 10708548
@@ -3619,17 +3585,13 @@ object Form1: TForm1
       Pointer.Pen.Color = clSilver
       Pointer.Pen.Visible = False
       Pointer.Style = psCircle
-      Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series2: TPointSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       ClickableLine = False
       Pointer.Brush.Gradient.EndColor = 3513587
       Pointer.Emboss.Color = 10855845
@@ -3639,116 +3601,89 @@ object Form1: TForm1
       Pointer.Pen.Color = clSilver
       Pointer.Pen.Visible = False
       Pointer.Style = psDownTriangle
-      Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series5: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       Brush.BackColor = clDefault
       LinePen.Color = 1330417
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series6: TLineSeries
+      HoverElement = [heCurrent]
       ColorEachPoint = True
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
       Brush.BackColor = clDefault
       LinePen.Color = 11048782
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series7: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       Brush.BackColor = clDefault
       LinePen.Color = 7028779
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series8: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       Brush.BackColor = clDefault
       LinePen.Color = 6519581
       LinePen.Width = 2
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series9: TLineSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       Brush.BackColor = clDefault
       LinePen.Color = 919731
       LinePen.Width = 2
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series16: TPointSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
+      HoverElement = [heCurrent]
       ClickableLine = False
       Pointer.Brush.Gradient.EndColor = 6144242
       Pointer.Gradient.EndColor = 6144242
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series17: TLineSeries
+      HoverElement = [heCurrent]
       ColorEachLine = False
       Emboss.Color = clGreen
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
       SeriesColor = clGreen
       Shadow.Color = clGreen
       Shadow.Visible = False
+      Brush.BackColor = clDefault
       ClickableLine = False
       Dark3D = False
       LinePen.Color = clGreen
@@ -3759,19 +3694,16 @@ object Form1: TForm1
       Pointer.Gradient.EndColor = clGreen
       Pointer.InflateMargins = True
       Pointer.Style = psRectangle
-      Pointer.Visible = False
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
     object Series21: TLineSeries
+      HoverElement = [heCurrent]
       ColorEachLine = False
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Visible = False
       SeriesColor = 10485760
+      Brush.BackColor = clDefault
       LinePen.Color = 10485760
       LinePen.Width = 2
       Pointer.Brush.Color = 16744448
@@ -3840,6 +3772,7 @@ object Form1: TForm1
     Color = clWhite
     TabOrder = 7
     Visible = False
+    DefaultCanvas = 'TGDIPlusCanvas'
     PrintMargins = (
       30
       15
@@ -3847,18 +3780,13 @@ object Form1: TForm1
       15)
     ColorPaletteIndex = 13
     object Series3: TBubbleSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Callout.Distance = 1
-      Marks.BackColor = clWhite
-      Marks.Color = clWhite
+      HoverElement = [heCurrent]
       Marks.Emboss.Color = 8750469
       Marks.Font.Height = -19
       Marks.Font.Name = 'Calibri'
-      Marks.Font.Gradient.EndColor = clGray
-      Marks.Font.Gradient.MidColor = clWhite
-      Marks.Font.Gradient.StartColor = clSilver
+      Marks.Font.Brush.Gradient.EndColor = clGray
+      Marks.Font.Brush.Gradient.MidColor = clWhite
+      Marks.Font.Brush.Gradient.StartColor = clSilver
       Marks.Font.OutLine.Color = clWhite
       Marks.Font.Shadow.Color = clWhite
       Marks.Font.Shadow.HorizSize = 1
@@ -3867,13 +3795,15 @@ object Form1: TForm1
       Marks.Font.Shadow.VertSize = 1
       Marks.Font.Shadow.Visible = False
       Marks.Frame.Visible = False
-      Marks.Margins.Top = 0
-      Marks.Margins.Bottom = 30
-      Marks.Margins.Units = maPercentSize
       Marks.Shadow.Color = 8947848
       Marks.Shadow.Visible = False
       Marks.Transparency = 50
-      Marks.Visible = False
+      Marks.Margins.Top = 0
+      Marks.Margins.Bottom = 30
+      Marks.Margins.Units = maPercentSize
+      Marks.BackColor = clWhite
+      Marks.Callout.Distance = 1
+      Marks.Color = clWhite
       Title = #1042#1085#1077' '#1086#1087#1090#1080#1084#1091#1084#1072
       ClickableLine = False
       Pointer.Brush.Gradient.EndColor = clRed
@@ -3886,7 +3816,6 @@ object Form1: TForm1
       Pointer.Style = psCircle
       Pointer.Transparency = 31
       Pointer.VertSize = 9
-      Pointer.Visible = True
       Transparency = 31
       XValues.Name = 'X'
       XValues.Order = loAscending
@@ -3901,16 +3830,11 @@ object Form1: TForm1
         0200000039300000000000002840}
     end
     object Series4: TBubbleSeries
-      Marks.Arrow.Visible = True
-      Marks.Callout.Brush.Color = clBlack
-      Marks.Callout.Arrow.Visible = True
-      Marks.Callout.Distance = 1
-      Marks.BackColor = clWhite
+      HoverElement = [heCurrent]
       Marks.Brush.Gradient.StartColor = clWhite
-      Marks.Color = clWhite
       Marks.Font.Height = -19
       Marks.Font.Name = 'Calibri'
-      Marks.Font.Gradient.EndColor = clWhite
+      Marks.Font.Brush.Gradient.EndColor = clWhite
       Marks.Font.OutLine.Color = clWhite
       Marks.Font.OutLine.EndStyle = esFlat
       Marks.Font.Shadow.Color = clWhite
@@ -3920,14 +3844,16 @@ object Form1: TForm1
       Marks.Font.Shadow.VertSize = 1
       Marks.Font.Shadow.Visible = False
       Marks.Frame.Visible = False
-      Marks.Gradient.StartColor = clWhite
-      Marks.Margins.Top = 0
-      Marks.Margins.Bottom = 30
-      Marks.Margins.Units = maPercentSize
       Marks.Shadow.Color = 8882055
       Marks.Shadow.Visible = False
       Marks.Transparency = 50
       Marks.Visible = True
+      Marks.Margins.Top = 0
+      Marks.Margins.Bottom = 30
+      Marks.Margins.Units = maPercentSize
+      Marks.BackColor = clWhite
+      Marks.Callout.Distance = 1
+      Marks.Color = clWhite
       Title = #1054#1087#1090#1080#1084#1091#1084
       ClickableLine = False
       Pointer.Brush.Gradient.EndColor = 306739
@@ -3939,7 +3865,6 @@ object Form1: TForm1
       Pointer.Style = psCircle
       Pointer.Transparency = 30
       Pointer.VertSize = 5
-      Pointer.Visible = True
       Transparency = 30
       XValues.Name = 'X'
       XValues.Order = loAscending
@@ -4021,8 +3946,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 593
-    Width = 854
+    Top = 584
+    Width = 848
     Height = 19
     Panels = <
       item
@@ -4045,14 +3970,18 @@ object Form1: TForm1
         Width = 50
       end>
     OnDrawPanel = StatusBar1DrawPanel
+    ExplicitTop = 575
+    ExplicitWidth = 842
   end
   object ProgressBar1: TProgressBar
     Left = 100
-    Top = 593
-    Width = 469
+    Top = 584
+    Width = 463
     Height = 20
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
+    ExplicitTop = 575
+    ExplicitWidth = 457
   end
   object Button6: TButton
     Left = 277
@@ -4074,14 +4003,16 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 491
     Top = 38
-    Width = 363
-    Height = 523
+    Width = 357
+    Height = 514
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
     ScrollBars = ssBoth
     TabOrder = 1
     OnClick = Memo1Click
+    ExplicitWidth = 351
+    ExplicitHeight = 505
   end
   object DirectoryListBox1: TDirectoryListBox
     Left = 475
@@ -4144,12 +4075,13 @@ object Form1: TForm1
   end
   object CheckBox8: TCheckBox
     Left = 497
-    Top = 570
+    Top = 561
     Width = 176
     Height = 17
     Anchors = [akLeft, akBottom]
     Caption = #1042#1099#1074#1086#1076#1080#1090#1100' '#1090#1086#1083#1100#1082#1086' '#1086#1096#1080#1073#1082#1080
     TabOrder = 16
+    ExplicitTop = 552
   end
   object PageControl1: TPageControl
     Left = 8
@@ -4205,7 +4137,7 @@ object Form1: TForm1
       object Label20: TLabel
         Left = 3
         Top = 61
-        Width = 449
+        Width = 437
         Height = 20
         Caption = #8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211' '#9734' '#1051#1086#1082#1072#1083#1080#1079#1072#1094#1080#1103' '#9734' '#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211#8211
         Color = clInactiveBorder
@@ -5271,9 +5203,9 @@ object Form1: TForm1
           object Label37: TLabel
             Left = 127
             Top = 86
-            Width = 118
+            Width = 84
             Height = 13
-            Caption = #1074#1099#1089#1086#1090#1072'   '#1096#1080#1088#1080#1085#1072'     '#1096#1072#1075
+            Caption = #1074#1099#1089#1086#1090#1072'   '#1096#1080#1088#1080#1085#1072
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -5409,6 +5341,7 @@ object Form1: TForm1
             Height = 24
             TabOrder = 6
             Text = '0.01'
+            Visible = False
           end
           object Edit41: TEdit
             Left = 171
@@ -5549,7 +5482,7 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 786
-    Top = 567
+    Top = 558
     Width = 60
     Height = 24
     Anchors = [akLeft, akBottom]
@@ -5562,6 +5495,7 @@ object Form1: TForm1
       '3 tab'
       '4 tab'
       '5 tab')
+    ExplicitTop = 549
   end
   object MainMenu1: TMainMenu
     BiDiMode = bdLeftToRight
@@ -5650,7 +5584,7 @@ object Form1: TForm1
     Left = 440
     Top = 224
     Bitmap = {
-      494C010101001400540010001000FFFBF000FF10FFFFFFFFFFFFFFFF424D3600
+      494C010101001400040010001000FFFBF000FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000FCF7F400FCF7F4003C3CDA003C3C
       DA00FCF7F400FCF7F400FCF7F400FCF7F400FCF7F400FCF7F400FCF7F400FCF7

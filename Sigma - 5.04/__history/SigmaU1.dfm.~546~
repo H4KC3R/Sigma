@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Sigma - 5.03'
+  Caption = 'Sigma - 5.04'
   ClientHeight = 612
   ClientWidth = 854
   Color = clInactiveBorder
@@ -4609,6 +4609,10 @@ object Form1: TForm1
     object TabSheetFot: TTabSheet
       Caption = ' '#1060#1086#1090#1086#1084#1077#1090#1088#1080#1103'  '
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label60: TLabel
         Left = 195
         Top = 13
@@ -4912,6 +4916,10 @@ object Form1: TForm1
         TabOrder = 9
         object TabSheet3: TTabSheet
           Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1089#1083#1077#1076#1086#1074#1072#1085#1080#1103
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label15: TLabel
             Left = 38
             Top = 14
@@ -5241,6 +5249,10 @@ object Form1: TForm1
         object TabSheet5: TTabSheet
           Caption = #1043#1088#1072#1092#1080#1082#1080
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label24: TLabel
             Left = 12
             Top = 25
@@ -5651,7 +5663,7 @@ object Form1: TForm1
     Left = 440
     Top = 224
     Bitmap = {
-      494C0101010014005C0010001000FFFBF000FF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010014006C0010001000FFFBF000FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000FCF7F400FCF7F4003C3CDA003C3C
       DA00FCF7F400FCF7F400FCF7F400FCF7F400FCF7F400FCF7F400FCF7F400FCF7

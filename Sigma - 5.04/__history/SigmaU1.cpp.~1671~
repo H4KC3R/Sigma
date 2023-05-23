@@ -1,13 +1,13 @@
 ﻿//---------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-//////////////////////-- Версия 5.03 --//////////////////////
+//////////////////////-- Версия 5.04 --//////////////////////
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
 #include <vcl.h>
 #pragma hdrstop
-#include <math.h>
+#include <cmath>
 #include <System.hpp>
 #include <iostream>
 #include <fstream>
@@ -59,6 +59,15 @@ float min2 ( float a, float  b){
 float max2 ( float a, float  b){
 	if (a>b) return a;
 	else return b;
+}
+
+float FixRoundTo(float x, int y)
+{
+	asm
+	{
+		fnclex
+	}
+	return RoundTo(x, y);
 }
 
 void __fastcall TForm1::CheckBox1Click(TObject *Sender)
@@ -344,8 +353,8 @@ void BinFrameSigma()    //заменить 2 на коэф бинировани�
 
 	n = 0;
 	for (i = 0; i < SigmaSet.HWframe; i++)
-	for (j = 0; j < SigmaSet.HWframe; j++)
-		SigmaSet.Frame[i][j] = BufKad2[n++];
+		for (j = 0; j < SigmaSet.HWframe; j++)
+			SigmaSet.Frame[i][j] = BufKad2[n++];
 
 	//Проверка - вывод кадра
 //	FILE *streG = fopen(AnsiString("C:\\Cybertron\\Programms\\BinK_"+IntToStr(SigmaSet.HWframe)+".dat").c_str(), "wb");
@@ -1637,22 +1646,22 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 							{
 								float BufReport10 = 0;
 								IdentifFromName(AnsiString(FileNames[0]).c_str(), AnsiString(Edit8->Text).c_str() , AnsiString(Edit6->Text).c_str(), &BufReport10);
-								SetCell(ProgressBar1->Position+3, 2, FloatToStr(RoundTo(BufReport10,-3)));
+								SetCell(ProgressBar1->Position+3, 2, FloatToStr(FixRoundTo(BufReport10,-3)));
 								BufReport10 = 0;
 								IdentifFromName(AnsiString(FileNames[0]).c_str(), AnsiString(Edit22->Text).c_str(), AnsiString(Edit7->Text).c_str(), &BufReport10);
 								SetCell(ProgressBar1->Position+3, 1, FloatToStr(BufReport10));
 
 								SetCell(ProgressBar1->Position+3, 3, IntToStr(SigmaSet.Is2));
-								SetCell(ProgressBar1->Position+3, 4, FloatToStr(RoundTo(IYasa,-1)));
+								SetCell(ProgressBar1->Position+3, 4, FloatToStr(FixRoundTo(IYasa,-1)));
 								SetCell(ProgressBar1->Position+3, 5, IntToStr(SigmaSet.N2));
-								SetCell(ProgressBar1->Position+3, 6, FloatToStr(RoundTo(SigX,-3)));
-								SetCell(ProgressBar1->Position+3, 7, FloatToStr(RoundTo(SigY,-3)));
-								SetCell(ProgressBar1->Position+3, 8, FloatToStr(RoundTo(BufLOC1,-1)));
-								SetCell(ProgressBar1->Position+3, 9, FloatToStr(RoundTo(BufLOCdSKO,-1)));
+								SetCell(ProgressBar1->Position+3, 6, FloatToStr(FixRoundTo(SigX,-3)));
+								SetCell(ProgressBar1->Position+3, 7, FloatToStr(FixRoundTo(SigY,-3)));
+								SetCell(ProgressBar1->Position+3, 8, FloatToStr(FixRoundTo(BufLOC1,-1)));
+								SetCell(ProgressBar1->Position+3, 9, FloatToStr(FixRoundTo(BufLOCdSKO,-1)));
 								SetCell(ProgressBar1->Position+3, 10, IntToStr(F4Lines));
 								SetCell(ProgressBar1->Position+3, 11, IntToStr(SigmaSet.Ispic));
-								SetCell(ProgressBar1->Position+3, 12, FloatToStr(RoundTo(pow(2.512,BufReport10)*IYasa,-1)));
-								SetCell(ProgressBar1->Position+3, 13, FloatToStr(RoundTo(pow(2.512,BufReport10)*SigmaSet.Is2,-1)));
+								SetCell(ProgressBar1->Position+3, 12, FloatToStr(FixRoundTo(pow(2.512f,BufReport10)*IYasa,-1)));
+								SetCell(ProgressBar1->Position+3, 13, FloatToStr(FixRoundTo(pow(2.512f,BufReport10)*SigmaSet.Is2,-1)));
 							}
 
 
@@ -1795,10 +1804,10 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 					}
 
 				   if (Mug>10)
-					   Form1->Memo1->Lines->Add(IntToStr(ProgressBar1->Position+1) + TabSpace + TimeToStr(Time()) + TabSpace + "Плохое уравнивание по Мю" + TabSpace+ FloatToStr((int)SigmaSet.x) + "x" + FloatToStr((int)SigmaSet.y) + TabSpace + FloatToStr(RoundTo(SigX,-3)) + TabSpace + FloatToStr(RoundTo(SigY,-3)) + TabSpace + FloatToStr(RoundTo(Mug,-3)) + TabSpace + FileNames[0]);
+					   Form1->Memo1->Lines->Add(IntToStr(ProgressBar1->Position+1) + TabSpace + TimeToStr(Time()) + TabSpace + "Плохое уравнивание по Мю" + TabSpace+ FloatToStr((int)SigmaSet.x) + "x" + FloatToStr((int)SigmaSet.y) + TabSpace + FloatToStr(FixRoundTo(SigX,-3)) + TabSpace + FloatToStr(FixRoundTo(SigY,-3)) + TabSpace + FloatToStr(FixRoundTo(Mug,-3)) + TabSpace + FileNames[0]);
 				   else
 					 if (CheckBox8->Checked == false)
-					 Form1->Memo1->Lines->Add(IntToStr(ProgressBar1->Position+1) + TabSpace + TimeToStr(Time()) + TabSpace +"ОК" + TabSpace + FloatToStr((int)SigmaSet.x) + "x" + FloatToStr((int)SigmaSet.y) + TabSpace + FloatToStr(RoundTo(SigX,-3)) + TabSpace + FloatToStr(RoundTo(SigY,-3)) + TabSpace + FloatToStr(RoundTo(Mug,-3)) + TabSpace + FileNames[0]);
+					 Form1->Memo1->Lines->Add(IntToStr(ProgressBar1->Position+1) + TabSpace + TimeToStr(Time()) + TabSpace +"ОК" + TabSpace + FloatToStr((int)SigmaSet.x) + "x" + FloatToStr((int)SigmaSet.y) + TabSpace + FloatToStr(FixRoundTo(SigX,-3)) + TabSpace + FloatToStr(FixRoundTo(SigY,-3)) + TabSpace + FloatToStr(FixRoundTo(Mug,-3)) + TabSpace + FileNames[0]);
 
 				}
 				else {
@@ -2007,12 +2016,14 @@ void ReportSort(FullSigmaTable *FullSigmaFS, int MeterFS, int PorogPxFS,
 float ConvMM (float a)
 {
 	float b;
-	b =(a - StrToFloat(Form1->Edit18->Text))*(StrToFloat(Form1->Edit45->Text)*StrToFloat(Form1->Edit45->Text))/(StrToFloat(Form1->Edit46->Text)*StrToFloat(Form1->Edit46->Text));
+	b = (a - StrToFloat(Form1->Edit18->Text)) * (StrToFloat(Form1->Edit45->Text)
+		* StrToFloat(Form1->Edit45->Text)) / (StrToFloat(Form1->Edit46->Text)
+		* StrToFloat(Form1->Edit46->Text));
 	return b;
 }
 
 int qfloatX(const void *pa, const void *pb) {
-    float a = *(float*)pa, b = *(float*)pb;
+	float a = *(float*)pa, b = *(float*)pb;
     if (a > b) return 1;
     if (a < b) return -1;
     return 0;
@@ -2473,9 +2484,9 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 				AllGoodPointY++;
 		}
 		SetTextFormat(12, 0, 0, 0, 0, 0.02);
-		AddParagraph("Всего объектов:	" + IntToStr(Meter) + "\nИз них оптимальных:\nпо оси Х -	" + IntToStr(AllGoodPointX) + "	( " + FloatToStr(RoundTo((float)(AllGoodPointX*100)/Meter,-3))+" % )");
+		AddParagraph("Всего объектов:	" + IntToStr(Meter) + "\nИз них оптимальных:\nпо оси Х -	" + IntToStr(AllGoodPointX) + "	( " + FloatToStr(FixRoundTo((float)(AllGoodPointX*100)/Meter,-3))+" % )");
 		SetTextFormat(12, 0, 0, 0, 0, 1);
-		AddParagraph("по оси Y -	" + IntToStr(AllGoodPointY) + "	( " + FloatToStr(RoundTo((float)(AllGoodPointY*100)/Meter,-3))+" % )");
+		AddParagraph("по оси Y -	" + IntToStr(AllGoodPointY) + "	( " + FloatToStr(FixRoundTo((float)(AllGoodPointY*100)/Meter,-3))+" % )");
 		SetTextFormat(12, 0, 0, 0, 0, 0.02);
 		// Расчет медианы
 		float *MassSortX = new float [Meter];
@@ -2495,9 +2506,9 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		AddParagraph("Медиана (значение параметра Sigma):");
 //        SetTextFormat(12, 0, 0, 0, 0, 0.02);
 		if(Meter%2 == 0)  //четное
-		AddParagraph("по оси Х -	" + FloatToStr(RoundTo((float)(MassSortX[Meter/2]+MassSortX[Meter/2-1])/2,-3)) + "\nпо оси Y -	" + FloatToStr(RoundTo((float)(MassSortY[Meter/2]+MassSortY[Meter/2-1])/2,-3)) );
+		AddParagraph("по оси Х -	" + FloatToStr(FixRoundTo((float)(MassSortX[Meter/2]+MassSortX[Meter/2-1])/2,-3)) + "\nпо оси Y -	" + FloatToStr(FixRoundTo((float)(MassSortY[Meter/2]+MassSortY[Meter/2-1])/2,-3)) );
 		else   //не четное
-		AddParagraph("по оси Х -	" + FloatToStr(RoundTo((float)MassSortX[Meter/2],-3)) + "\nпо оси Y -	" + FloatToStr(RoundTo((float)MassSortY[Meter/2],-3)));
+		AddParagraph("по оси Х -	" + FloatToStr(FixRoundTo((float)MassSortX[Meter/2],-3)) + "\nпо оси Y -	" + FloatToStr(FixRoundTo((float)MassSortY[Meter/2],-3)));
 
 		delete [] MassSortX;
 		delete [] MassSortY;
@@ -3262,47 +3273,47 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 			if (SigMaxOne != 0 && BoxXY[ifile].N >= StrToInt(Edit51->Text))
 			if (CheckBox11->Checked){
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit20->Text) - 0.2) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (153,50,204));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (153,50,204));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit20->Text) - 0.1) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,87,250));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,87,250));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit20->Text)) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (66,170,255));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (66,170,255));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N <= (StrToFloat(Edit21->Text)) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,255,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,255,0));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit21->Text) + 0.2)  )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,255,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,255,0));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit21->Text) + 0.4) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,165,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,165,0));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N >= (StrToFloat(Edit21->Text) + 0.4) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,0,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,StrToFloat(Edit44->Text), FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,0,0));
 			}
 			else {
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit20->Text) - 0.2) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (153,50,204));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (153,50,204));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit20->Text) - 0.1) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,87,250));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,87,250));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit20->Text)) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (66,170,255));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (66,170,255));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N <= (StrToFloat(Edit21->Text)) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,255,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (0,255,0));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit21->Text) + 0.2)  )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,255,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,255,0));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N < (StrToFloat(Edit21->Text) + 0.4) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,165,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,165,0));
 			else
 			if ( SigMaxOne/BoxXY[ifile].N >= (StrToFloat(Edit21->Text) + 0.4) )
-			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(RoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,0,0));
+			Series3->AddBubble(BoxXY[ifile].x,BoxXY[ifile].y,SigMaxOne*StrToFloat(Edit44->Text)/BoxXY[ifile].N, FloatToStr(FixRoundTo(SigMaxOne/BoxXY[ifile].N, -3)) + "\r\n" + IntToStr(GoodPoint)+"/"+IntToStr(BoxXY[ifile].N), RGB (255,0,0));
 			}
 
 		}
@@ -3931,17 +3942,16 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		for (i = 0; i < NomBoxXY; i++)
 		{
 			Parameters(AprocRezX[i].X, AprocRezY[i].X, &RelizXrez, &RelizYrez, &RelizXYrez, InfCol, FocBkz, FocCol);
-			
+
 			if (AprocRezX[i].X != 1000 && (BoxXY[i].y >= (Ymatr/2) - Sector) && (BoxXY[i].y <= (Ymatr/2) + Sector) )
-			Chart3->Series[0]->AddXY(BoxXY[i].x * pixSize,RelizXrez, FloatToStr(RoundTo(BoxXY[i].x,-1))+"\r\n"+FloatToStr(RoundTo(BoxXY[i].x * pixSize,-2)), RGB (30,144,255));
+			Chart3->Series[0]->AddXY(BoxXY[i].x * pixSize,RelizXrez, FloatToStr(FixRoundTo(BoxXY[i].x,-1))+"\r\n"+FloatToStr(FixRoundTo(BoxXY[i].x * pixSize,-2)), RGB (30,144,255));
 
 			if (AprocRezY[i].X != 1000 && (BoxXY[i].y >= (Ymatr/2) - Sector) && (BoxXY[i].y <= (Ymatr/2) + Sector) )
-			Chart3->Series[1]->AddXY(BoxXY[i].x * pixSize,RelizYrez, FloatToStr(RoundTo(BoxXY[i].x,-1))+"\r\n"+FloatToStr(RoundTo(BoxXY[i].x * pixSize,-2)), RGB (185,78,72));
+			Chart3->Series[1]->AddXY(BoxXY[i].x * pixSize,RelizYrez, FloatToStr(FixRoundTo(BoxXY[i].x,-1))+"\r\n"+FloatToStr(FixRoundTo(BoxXY[i].x * pixSize,-2)), RGB (185,78,72));
 
 			if (AprocRezY[i].X != 1000 && AprocRezX[i].X != 1000 && (BoxXY[i].y >= (Ymatr/2) - Sector) && (BoxXY[i].y <= (Ymatr/2) + Sector) )
-			Chart3->Series[2]->AddXY(BoxXY[i].x * pixSize,RelizXYrez, FloatToStr(RoundTo(BoxXY[i].x,-1))+"\r\n"+FloatToStr(RoundTo(BoxXY[i].x * pixSize,-2)), RGB (2,174,36));
+			Chart3->Series[2]->AddXY(BoxXY[i].x * pixSize,RelizXYrez, FloatToStr(FixRoundTo(BoxXY[i].x,-1))+"\r\n"+FloatToStr(FixRoundTo(BoxXY[i].x * pixSize,-2)), RGB (2,174,36));
 		}
-
 
 		//Заполнение графиков наклона матрицы по Х
 //		for (i = 0; i < NomBoxXY; i++)
@@ -3962,7 +3972,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 
 		//Прямая аппроксимации по Х
 		for (i = 0; i < StrToInt(Edit34->Text) * StrToFloat(Edit50->Text); i++)
-		Chart3->Series[3]->AddXY(i,ChuwiAx*i+ChuwiBx);
+			Chart3->Series[3]->AddXY(i,ChuwiAx*i+ChuwiBx);
 
 		Chart3->Axes->Bottom->AutomaticMaximum = false;
 		Chart3->Axes->Bottom->AutomaticMinimum = false;
@@ -3982,22 +3992,22 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		}
 
 		Chart3->Axes->Bottom->Title->Caption = "\r\nКоордината по оси X";
-
 		Chart3->Refresh();
 		Application->ProcessMessages();
 		Chart3->Title->Text->Text = AnsiString("   Наклон матрицы по оси X  " + Edit32->Text + " №" + Edit33->Text + "  ("+ buffDate +")").c_str();
 //		Chart3->PaintTo(bm->Canvas->Handle,0,0);
 		String NameGraf = (Edit23->Text+"\\Sigma - " + bufftime + " - Graf RezX.bmp");
+
 		Chart3->SaveToBitmapFile(NameGraf);
 		AddPicture(NameGraf);
 
 		if ( MNK1ProvX == 0 ) {
-			AddParagraph("Y = "+FloatToStr(RoundTo(ChuwiAx,-8))+"*X + "+FloatToStr(RoundTo(ChuwiBx,-8)));
-			AddParagraph("acrtg(A) = "+FloatToStr(RoundTo(atan(ChuwiAx)* 180.0 / M_PI,-5))+"    ("+FloatToStr(RoundTo(60*atan(ChuwiAx)* 180.0 / M_PI,-3))+" угл.мин)");
-			AddParagraph("Расстояние по центру до нуля = " + FloatToStr(RoundTo(ChuwiAx*((StrToInt(Edit34->Text) * StrToFloat(Edit50->Text))/2)+ChuwiBx,-4)) + " мм");
+			AddParagraph("Y = "+FloatToStr(FixRoundTo(ChuwiAx,-8))+"*X + "+FloatToStr(FixRoundTo(ChuwiBx,-8)));
+			AddParagraph("acrtg(A) = "+FloatToStr(FixRoundTo(atan(ChuwiAx)* 180.0 / M_PI,-5))+"    ("+FloatToStr(FixRoundTo(60*atan(ChuwiAx)* 180.0 / M_PI,-3))+" угл.мин)");
+			AddParagraph("Расстояние по центру до нуля = " + FloatToStr(FixRoundTo(ChuwiAx*((StrToInt(Edit34->Text) * StrToFloat(Edit50->Text))/2)+ChuwiBx,-4)) + " мм");
 		}
-		//SaveDoc(ReportName);
 
+		//SaveDoc(ReportName);
 		Chart3->Series[0]->Clear();
 		Chart3->Series[1]->Clear();
 		Chart3->Series[2]->Clear();
@@ -4010,22 +4020,13 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 			Parameters(AprocRezX[i].X, AprocRezY[i].X, &RelizXrez, &RelizYrez, &RelizXYrez, InfCol, FocBkz, FocCol);
 
 			if (AprocRezX[i].X != 1000 && (BoxXY[i].x >= (Xmatr/2) - Sector) && (BoxXY[i].x <= (Xmatr/2) + Sector) )
-			{
-			float rrrr = BoxXY[i].y * pixSize;
-			float reer = RelizXrez;
-			String dddd = FloatToStr(RoundTo(BoxXY[i].y,-1));
-			String ssdd = FloatToStr(RoundTo(BoxXY[i].y * pixSize,-2));
-
-
-			Chart3->Series[0]->AddXY(BoxXY[i].y * pixSize,RelizXrez, FloatToStr(RoundTo(BoxXY[i].y,-1))+"\r\n"+FloatToStr(RoundTo(BoxXY[i].y * pixSize,-2)), RGB (30,144,255));
-
-			}
+			Chart3->Series[0]->AddXY(BoxXY[i].y * pixSize,RelizXrez, FloatToStr(FixRoundTo(BoxXY[i].y,-1))+"\r\n"+FloatToStr(FixRoundTo(BoxXY[i].y * pixSize,-2)), RGB (30,144,255));
 
 			if (AprocRezY[i].X != 1000 && (BoxXY[i].x >= (Xmatr/2) - Sector) && (BoxXY[i].x <= (Xmatr/2) + Sector) )
-			Chart3->Series[1]->AddXY(BoxXY[i].y * pixSize,RelizYrez, FloatToStr(RoundTo(BoxXY[i].y,-1))+"\r\n"+FloatToStr(RoundTo(BoxXY[i].y * pixSize,-2)), RGB (185,78,72));
+			Chart3->Series[1]->AddXY(BoxXY[i].y * pixSize,RelizYrez, FloatToStr(FixRoundTo(BoxXY[i].y,-1))+"\r\n"+FloatToStr(FixRoundTo(BoxXY[i].y * pixSize,-2)), RGB (185,78,72));
 
 			if (AprocRezY[i].X != 1000 && AprocRezX[i].X != 1000 && (BoxXY[i].x >= (Xmatr/2) - Sector) && (BoxXY[i].x <= (Xmatr/2) + Sector) )
-			Chart3->Series[2]->AddXY(BoxXY[i].y * pixSize,RelizXYrez, FloatToStr(RoundTo(BoxXY[i].y,-1))+"\r\n"+FloatToStr(RoundTo(BoxXY[i].y * pixSize,-2)), RGB (2,174,36));
+			Chart3->Series[2]->AddXY(BoxXY[i].y * pixSize,RelizXYrez, FloatToStr(FixRoundTo(BoxXY[i].y,-1))+"\r\n"+FloatToStr(FixRoundTo(BoxXY[i].y * pixSize,-2)), RGB (2,174,36));
 		}
 
 		
@@ -4080,9 +4081,9 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		AddPicture(NameGraf);
 
 		if ( MNK1ProvY == 0 ) {
-			AddParagraph("Y = "+FloatToStr(RoundTo(ChuwiAy,-8))+"*X + "+FloatToStr(RoundTo(ChuwiBy,-8)));
-			AddParagraph("acrtg(A) = "+FloatToStr(RoundTo(atan(ChuwiAy)* 180.0 / M_PI,-5))+"    ("+FloatToStr(RoundTo(60*atan(ChuwiAy)* 180.0 / M_PI,-3))+" угл.мин)");
-			AddParagraph("Расстояние по центру до нуля = " + FloatToStr(RoundTo(ChuwiAy*((StrToInt(Edit43->Text) * StrToFloat(Edit50->Text))/2)+ChuwiBy,-4)) + " мм");
+			AddParagraph("Y = "+FloatToStr(FixRoundTo(ChuwiAy,-8))+"*X + "+FloatToStr(FixRoundTo(ChuwiBy,-8)));
+			AddParagraph("acrtg(A) = "+FloatToStr(FixRoundTo(atan(ChuwiAy)* 180.0 / M_PI,-5))+"    ("+FloatToStr(FixRoundTo(60*atan(ChuwiAy)* 180.0 / M_PI,-3))+" угл.мин)");
+			AddParagraph("Расстояние по центру до нуля = " + FloatToStr(FixRoundTo(ChuwiAy*((StrToInt(Edit43->Text) * StrToFloat(Edit50->Text))/2)+ChuwiBy,-4)) + " мм");
 		}
 		//SaveDoc(ReportName);
 		#pragma end_region
@@ -4112,14 +4113,14 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 
 			if ( (SigmaMin <= SigmaInfX) && (SigmaMax >= SigmaInfX) )
 			{
-				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfX * BubbleSize, FloatToStr(RoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(RoundTo(SigmaInfX,-2)),RGB (0,204,0));
+				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfX * BubbleSize, FloatToStr(FixRoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfX,-2)),RGB (0,204,0));
 			}
 			else
 			{
 				if (AprocRezX[i].X == 1000)
 					Series4->AddBubble(BoxXY[i].x, BoxXY[i].y, SigmaInfX * BubbleSize,"-",RGB (255,77,0));
 				else
-					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfX * BubbleSize, FloatToStr(RoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(RoundTo(SigmaInfX,-2)),RGB (255,77,0));
+					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfX * BubbleSize, FloatToStr(FixRoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfX,-2)),RGB (255,77,0));
 			}
 		}
 
@@ -4164,14 +4165,14 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 
 			if ( (SigmaMin <= SigmaInfY) && (SigmaMax >= SigmaInfY) )
 			{
-				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfY * BubbleSize, FloatToStr(RoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(RoundTo(SigmaInfY,-2)),RGB (0,204,0));
+				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfY * BubbleSize, FloatToStr(FixRoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfY,-2)),RGB (0,204,0));
 			}
 			else
 			{
 				if (AprocRezY[i].X == 1000)
 					Series4->AddBubble(BoxXY[i].x, BoxXY[i].y, SigmaInfY * BubbleSize,"-",RGB (255,77,0));
 				else
-					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfY * BubbleSize, FloatToStr(RoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(RoundTo(SigmaInfY,-2)),RGB (255,77,0));
+					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfY * BubbleSize, FloatToStr(FixRoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfY,-2)),RGB (255,77,0));
 			}
 		}
 
@@ -4267,8 +4268,8 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 					{
 
 						ConverMM = (FullSigma[ifile].mm - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text));
-						Chart1->Series[0]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigX, FloatToStr(RoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(RoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
-						Chart1->Series[1]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigY, FloatToStr(RoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(RoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
+						Chart1->Series[0]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigX, FloatToStr(FixRoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(FixRoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
+						Chart1->Series[1]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigY, FloatToStr(FixRoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(FixRoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
 
 						if (FullSigma[ifile].mm < MinChart1) MinChart1 = FullSigma[ifile].mm;
 						if (FullSigma[ifile].mm > MaxChart1) MaxChart1 = FullSigma[ifile].mm;
@@ -4418,7 +4419,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 						{
 
 							ConverMM = (FullSigma[ifile].mm - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text));
-							Chart1->Series[9]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].Nframe, FloatToStr(RoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(RoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
+							Chart1->Series[9]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].Nframe, FloatToStr(FixRoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(FixRoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
 
 	//						PointSeries[0]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigX, FullSigma[ifile].mm, (int)FullSigma[ifile].ms*300);
 	//						PointSeries[0]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigY, FullSigma[ifile].mm, (int)FullSigma[ifile].ms*10);
@@ -4572,70 +4573,70 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 			//Бесконечность
 			SetCell(2, 3, Edit18->Text);
 			SetCell(2, 4, "0");
-			SetCell(2, 5, FloatToStr(RoundTo( SigmaInfX,-2)) );
+			SetCell(2, 5, FloatToStr(FixRoundTo( SigmaInfX,-2)) );
 			SetCell(7, 3, Edit18->Text);
 			SetCell(7, 4, "0");
-			SetCell(7, 5, FloatToStr(RoundTo( SigmaInfY,-2)) );
+			SetCell(7, 5, FloatToStr(FixRoundTo( SigmaInfY,-2)) );
 
-			if (AprocRezX[i].PerV2 != 1000) SetCell(3, 3, FloatToStr(RoundTo(AprocRezX[i].PerV2,-2)));  else SetCell(3, 3, "-");
-			if (AprocRezX[i].PerV1 != -1000) SetCell(3, 4, FloatToStr(RoundTo(AprocRezX[i].PerV1,-2)));  else SetCell(3, 4, "-");
-			if (AprocRezX[i].PerN2 != 1000) SetCell(4, 3, FloatToStr(RoundTo(AprocRezX[i].PerN2,-2)));  else SetCell(4, 3, "-");
-			if (AprocRezX[i].PerN1 != -1000) SetCell(4, 4, FloatToStr(RoundTo(AprocRezX[i].PerN1,-2)));  else SetCell(4, 4, "-");
+			if (AprocRezX[i].PerV2 != 1000) SetCell(3, 3, FloatToStr(FixRoundTo(AprocRezX[i].PerV2,-2)));  else SetCell(3, 3, "-");
+			if (AprocRezX[i].PerV1 != -1000) SetCell(3, 4, FloatToStr(FixRoundTo(AprocRezX[i].PerV1,-2)));  else SetCell(3, 4, "-");
+			if (AprocRezX[i].PerN2 != 1000) SetCell(4, 3, FloatToStr(FixRoundTo(AprocRezX[i].PerN2,-2)));  else SetCell(4, 3, "-");
+			if (AprocRezX[i].PerN1 != -1000) SetCell(4, 4, FloatToStr(FixRoundTo(AprocRezX[i].PerN1,-2)));  else SetCell(4, 4, "-");
 
-			SetCell(5, 3, FloatToStr(RoundTo(AprocRezX[i].ExtX,-2)));
-			SetCell(5, 5, FloatToStr(RoundTo(AprocRezX[i].ExtY,-2)));
+			SetCell(5, 3, FloatToStr(FixRoundTo(AprocRezX[i].ExtX,-2)));
+			SetCell(5, 5, FloatToStr(FixRoundTo(AprocRezX[i].ExtY,-2)));
 
-			if (AprocRezY[i].PerV2 != 1000) SetCell(8, 3, FloatToStr(RoundTo(AprocRezY[i].PerV2,-2)));  else SetCell(8, 3, "-");
-			if (AprocRezY[i].PerV1 != -1000) SetCell(8, 4, FloatToStr(RoundTo(AprocRezY[i].PerV1,-2)));  else SetCell(8, 4, "-");
-			if (AprocRezY[i].PerN2 != 1000) SetCell(9, 3, FloatToStr(RoundTo(AprocRezY[i].PerN2,-2)));  else SetCell(9, 3, "-");
-			if (AprocRezY[i].PerN1 != -1000) SetCell(9, 4, FloatToStr(RoundTo(AprocRezY[i].PerN1,-2)));  else SetCell(9, 4, "-");
+			if (AprocRezY[i].PerV2 != 1000) SetCell(8, 3, FloatToStr(FixRoundTo(AprocRezY[i].PerV2,-2)));  else SetCell(8, 3, "-");
+			if (AprocRezY[i].PerV1 != -1000) SetCell(8, 4, FloatToStr(FixRoundTo(AprocRezY[i].PerV1,-2)));  else SetCell(8, 4, "-");
+			if (AprocRezY[i].PerN2 != 1000) SetCell(9, 3, FloatToStr(FixRoundTo(AprocRezY[i].PerN2,-2)));  else SetCell(9, 3, "-");
+			if (AprocRezY[i].PerN1 != -1000) SetCell(9, 4, FloatToStr(FixRoundTo(AprocRezY[i].PerN1,-2)));  else SetCell(9, 4, "-");
 
-			SetCell(10, 3, FloatToStr(RoundTo(AprocRezY[i].ExtX,-2)));
-			SetCell(10, 5, FloatToStr(RoundTo(AprocRezY[i].ExtY,-2)));
+			SetCell(10, 3, FloatToStr(FixRoundTo(AprocRezY[i].ExtX,-2)));
+			SetCell(10, 5, FloatToStr(FixRoundTo(AprocRezY[i].ExtY,-2)));
 
 			SetCell(3, 7, (Edit21->Text) );
 			SetCell(4, 7, (Edit20->Text) );
 			SetCell(8, 7, (Edit21->Text) );
 			SetCell(9, 7, (Edit20->Text) );
 
-			if (AprocRezX[i].PerV2 != 1000) SetCell(3, 5, FloatToStr(RoundTo((AprocRezX[i].PerV2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(3, 5, "-");
-			if (AprocRezX[i].PerV1 != -1000) SetCell(3, 6, FloatToStr(RoundTo((AprocRezX[i].PerV1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(3, 6, "-");
-			if (AprocRezX[i].PerN2 != 1000) SetCell(4, 5, FloatToStr(RoundTo((AprocRezX[i].PerN2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(4, 5, "-");
-			if (AprocRezX[i].PerN1 != -1000) SetCell(4, 6, FloatToStr(RoundTo((AprocRezX[i].PerN1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(4, 6, "-");
+			if (AprocRezX[i].PerV2 != 1000) SetCell(3, 5, FloatToStr(FixRoundTo((AprocRezX[i].PerV2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(3, 5, "-");
+			if (AprocRezX[i].PerV1 != -1000) SetCell(3, 6, FloatToStr(FixRoundTo((AprocRezX[i].PerV1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(3, 6, "-");
+			if (AprocRezX[i].PerN2 != 1000) SetCell(4, 5, FloatToStr(FixRoundTo((AprocRezX[i].PerN2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(4, 5, "-");
+			if (AprocRezX[i].PerN1 != -1000) SetCell(4, 6, FloatToStr(FixRoundTo((AprocRezX[i].PerN1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(4, 6, "-");
 
-			if (AprocRezY[i].PerV2 != 1000) SetCell(8, 5, FloatToStr(RoundTo((AprocRezY[i].PerV2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(8, 5, "-");
-			if (AprocRezY[i].PerV1 != -1000) SetCell(8, 6, FloatToStr(RoundTo((AprocRezY[i].PerV1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(8, 6, "-");
-			if (AprocRezY[i].PerN2 != 1000) SetCell(9, 5, FloatToStr(RoundTo((AprocRezY[i].PerN2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(9, 5, "-");
-			if (AprocRezY[i].PerN1 != -1000) SetCell(9, 6, FloatToStr(RoundTo((AprocRezY[i].PerN1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(9, 6, "-");
+			if (AprocRezY[i].PerV2 != 1000) SetCell(8, 5, FloatToStr(FixRoundTo((AprocRezY[i].PerV2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(8, 5, "-");
+			if (AprocRezY[i].PerV1 != -1000) SetCell(8, 6, FloatToStr(FixRoundTo((AprocRezY[i].PerV1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(8, 6, "-");
+			if (AprocRezY[i].PerN2 != 1000) SetCell(9, 5, FloatToStr(FixRoundTo((AprocRezY[i].PerN2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(9, 5, "-");
+			if (AprocRezY[i].PerN1 != -1000) SetCell(9, 6, FloatToStr(FixRoundTo((AprocRezY[i].PerN1 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));  else SetCell(9, 6, "-");
 
-			SetCell(5,  4, FloatToStr(RoundTo((AprocRezX[i].ExtX - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));
-			SetCell(10, 4, FloatToStr(RoundTo((AprocRezY[i].ExtX - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));
+			SetCell(5,  4, FloatToStr(FixRoundTo((AprocRezX[i].ExtX - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));
+			SetCell(10, 4, FloatToStr(FixRoundTo((AprocRezY[i].ExtX - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)));
 
 			SigmaInfX = FindOneRootOfEquation(AprocRezX[i].RezMeanL, MNK_deg, AprocRezX[i].K);
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(6, 3, FloatToStr(RoundTo( AprocRezX[i].RezMeanL,-2)) );                                                                                                                                      else SetCell(6, 3, "-");
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(6, 5, FloatToStr(RoundTo((AprocRezX[i].RezMeanL - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) );  else SetCell(6, 5, "-");
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(6, 7, FloatToStr(RoundTo( SigmaInfX,-2)) );                                          else SetCell(6, 7, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(6, 3, FloatToStr(FixRoundTo( AprocRezX[i].RezMeanL,-2)) );                                                                                                                                      else SetCell(6, 3, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(6, 5, FloatToStr(FixRoundTo((AprocRezX[i].RezMeanL - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) );  else SetCell(6, 5, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(6, 7, FloatToStr(FixRoundTo( SigmaInfX,-2)) );                                          else SetCell(6, 7, "-");
 
 			SigmaInfX = FindOneRootOfEquation(AprocRezX[i].RezMeanR, MNK_deg, AprocRezX[i].K);
-			if (AprocRezX[i].RezMeanR != 1000) SetCell(6, 4, FloatToStr(RoundTo( AprocRezX[i].RezMeanR,-2)) );                                                                                                                                      else SetCell(6, 4, "-");
-			if (AprocRezX[i].RezMeanR != 1000) SetCell(6, 6, FloatToStr(RoundTo((AprocRezX[i].RezMeanR - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) );  else SetCell(6, 6, "-");
+			if (AprocRezX[i].RezMeanR != 1000) SetCell(6, 4, FloatToStr(FixRoundTo( AprocRezX[i].RezMeanR,-2)) );                                                                                                                                      else SetCell(6, 4, "-");
+			if (AprocRezX[i].RezMeanR != 1000) SetCell(6, 6, FloatToStr(FixRoundTo((AprocRezX[i].RezMeanR - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) );  else SetCell(6, 6, "-");
 //			SetCell(5, 7, " - " + FloatToStr(RoundTo( SigmaInfX,-3)) );
 
 			SigmaInfY = FindOneRootOfEquation(AprocRezY[i].RezMeanL, MNK_deg, AprocRezY[i].K);
-			if (AprocRezY[i].RezMeanL != 1000) SetCell(11, 3, FloatToStr(RoundTo( AprocRezY[i].RezMeanL,-2)) );                                                                                                                                     else SetCell(11, 3, "-");
-			if (AprocRezY[i].RezMeanL != 1000) SetCell(11, 5, FloatToStr(RoundTo((AprocRezY[i].RezMeanL - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(11, 5, "-");
-			if (AprocRezY[i].RezMeanL != 1000) SetCell(11, 7, FloatToStr(RoundTo( SigmaInfY,-2)) );                                         else SetCell(11, 7, "-");
+			if (AprocRezY[i].RezMeanL != 1000) SetCell(11, 3, FloatToStr(FixRoundTo( AprocRezY[i].RezMeanL,-2)) );                                                                                                                                     else SetCell(11, 3, "-");
+			if (AprocRezY[i].RezMeanL != 1000) SetCell(11, 5, FloatToStr(FixRoundTo((AprocRezY[i].RezMeanL - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(11, 5, "-");
+			if (AprocRezY[i].RezMeanL != 1000) SetCell(11, 7, FloatToStr(FixRoundTo( SigmaInfY,-2)) );                                         else SetCell(11, 7, "-");
 
 			SigmaInfY = FindOneRootOfEquation(AprocRezY[i].RezMeanR, MNK_deg, AprocRezY[i].K);
-			if (AprocRezY[i].RezMeanR != 1000) SetCell(11, 4, FloatToStr(RoundTo( AprocRezY[i].RezMeanR,-2)) );                                                                                                                                     else SetCell(11, 4, "-");
-			if (AprocRezY[i].RezMeanR != 1000) SetCell(11, 6, FloatToStr(RoundTo((AprocRezY[i].RezMeanR - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(11, 6, "-");
+			if (AprocRezY[i].RezMeanR != 1000) SetCell(11, 4, FloatToStr(FixRoundTo( AprocRezY[i].RezMeanR,-2)) );                                                                                                                                     else SetCell(11, 4, "-");
+			if (AprocRezY[i].RezMeanR != 1000) SetCell(11, 6, FloatToStr(FixRoundTo((AprocRezY[i].RezMeanR - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(11, 6, "-");
 //			SetCell(9, 7, " - " + FloatToStr(RoundTo( SigmaInfY,-3)) );
 
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 2, FloatToStr(RoundTo((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2,-2))); else SetCell(12, 2, "-");
-			if (AprocRezX[i].RezMeanR != 1000) SetCell(12, 3, FloatToStr(RoundTo((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2,-2))); else SetCell(12, 3, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 2, FloatToStr(FixRoundTo((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2,-2))); else SetCell(12, 2, "-");
+			if (AprocRezX[i].RezMeanR != 1000) SetCell(12, 3, FloatToStr(FixRoundTo((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2,-2))); else SetCell(12, 3, "-");
 
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 4, FloatToStr(RoundTo(((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(12, 4, "-");
-			if (AprocRezX[i].RezMeanR != 1000) SetCell(12, 5, FloatToStr(RoundTo(((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(12, 5, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 4, FloatToStr(FixRoundTo(((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(12, 4, "-");
+			if (AprocRezX[i].RezMeanR != 1000) SetCell(12, 5, FloatToStr(FixRoundTo(((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2 - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text)),-3)) ); else SetCell(12, 5, "-");
 
 
 
@@ -4644,8 +4645,8 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 			float Sy1 = FindOneRootOfEquation((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2, MNK_deg, AprocRezY[i].K);
 			float Sy2 = FindOneRootOfEquation((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2, MNK_deg, AprocRezY[i].K);
 
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 6,   "Sx: " + FloatToStr(RoundTo(Sx1,-2)) + " / " + FloatToStr(RoundTo(Sx2,-2)));  else SetCell(12, 6, "-");
-			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 6, "\nSy: " + FloatToStr(RoundTo(Sy1,-2)) + " / " + FloatToStr(RoundTo(Sy2,-2)));  else SetCell(12, 6, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 6,   "Sx: " + FloatToStr(FixRoundTo(Sx1,-2)) + " / " + FloatToStr(FixRoundTo(Sx2,-2)));  else SetCell(12, 6, "-");
+			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 6, "\nSy: " + FloatToStr(FixRoundTo(Sy1,-2)) + " / " + FloatToStr(FixRoundTo(Sy2,-2)));  else SetCell(12, 6, "-");
 
 //			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 6,   "Sx: " + FloatToStr(RoundTo( ((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2)*((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2)*AprocRezX[i].A +AprocRezX[i].B*((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2) + AprocRezX[i].C,-2)) + " / " + FloatToStr(RoundTo( ((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2)*((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2)*AprocRezX[i].A +AprocRezX[i].B*((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2) + AprocRezX[i].C,-2)));  else SetCell(12, 6, "-");
 //			if (AprocRezX[i].RezMeanL != 1000) SetCell(12, 6, "\nSy: " + FloatToStr(RoundTo( ((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2)*((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2)*AprocRezY[i].A +AprocRezY[i].B*((AprocRezX[i].RezMeanL+AprocRezY[i].RezMeanL)/2) + AprocRezY[i].C,-2)) + " / " + FloatToStr(RoundTo( ((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2)*((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2)*AprocRezY[i].A +AprocRezY[i].B*((AprocRezX[i].RezMeanR+AprocRezY[i].RezMeanR)/2) + AprocRezY[i].C,-2)));  else SetCell(12, 6, "-");
@@ -4687,7 +4688,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		for (i = 0; i < NomBoxMS; i++)
 		{
 			SetTextColor(BoxMS[i].ColGraf);
-			AddParagraph(FloatToStr(RoundTo(BoxMS[i].mm,-3)) + " мс");
+			AddParagraph(FloatToStr(FixRoundTo(BoxMS[i].mm,-3)) + " мс");
 		}
 		SetTextColor((TColor)RGB(0,0,0));
 
