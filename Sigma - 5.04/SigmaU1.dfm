@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Sigma - 5.04'
-  ClientHeight = 603
-  ClientWidth = 848
+  ClientHeight = 602
+  ClientWidth = 844
   Color = clInactiveBorder
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -3135,8 +3135,8 @@ object Form1: TForm1
   OnResize = FormResize
   OnShow = FormShow
   DesignSize = (
-    848
-    603)
+    844
+    602)
   TextHeight = 16
   object Label18: TLabel
     Left = 16
@@ -3176,7 +3176,7 @@ object Form1: TForm1
   end
   object Label65: TLabel
     Left = 688
-    Top = 562
+    Top = 561
     Width = 92
     Height = 16
     Anchors = [akLeft, akBottom]
@@ -3946,8 +3946,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 584
-    Width = 848
+    Top = 583
+    Width = 844
     Height = 19
     Panels = <
       item
@@ -3970,18 +3970,14 @@ object Form1: TForm1
         Width = 50
       end>
     OnDrawPanel = StatusBar1DrawPanel
-    ExplicitTop = 583
-    ExplicitWidth = 844
   end
   object ProgressBar1: TProgressBar
     Left = 100
-    Top = 584
-    Width = 463
+    Top = 583
+    Width = 459
     Height = 20
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
-    ExplicitTop = 583
-    ExplicitWidth = 459
   end
   object Button6: TButton
     Left = 277
@@ -4003,16 +3999,14 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 491
     Top = 38
-    Width = 357
-    Height = 514
+    Width = 353
+    Height = 513
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
     ScrollBars = ssBoth
     TabOrder = 1
     OnClick = Memo1Click
-    ExplicitWidth = 353
-    ExplicitHeight = 513
   end
   object DirectoryListBox1: TDirectoryListBox
     Left = 475
@@ -4075,13 +4069,12 @@ object Form1: TForm1
   end
   object CheckBox8: TCheckBox
     Left = 497
-    Top = 561
+    Top = 560
     Width = 176
     Height = 17
     Anchors = [akLeft, akBottom]
     Caption = #1042#1099#1074#1086#1076#1080#1090#1100' '#1090#1086#1083#1100#1082#1086' '#1086#1096#1080#1073#1082#1080
     TabOrder = 16
-    ExplicitTop = 560
   end
   object PageControl1: TPageControl
     Left = 8
@@ -5482,7 +5475,7 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 786
-    Top = 558
+    Top = 557
     Width = 60
     Height = 24
     Anchors = [akLeft, akBottom]
@@ -5495,7 +5488,6 @@ object Form1: TForm1
       '3 tab'
       '4 tab'
       '5 tab')
-    ExplicitTop = 557
   end
   object MainMenu1: TMainMenu
     BiDiMode = bdLeftToRight

@@ -97,7 +97,7 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <IncludePath>C:\Cybertron\Programms\Sigma\Sigma - 5.01;$(IncludePath)</IncludePath>
+        <IncludePath>D:\Sigma\Sigma - 5.04;$(IncludePath)</IncludePath>
         <BT_BuildType>Debug</BT_BuildType>
         <Manifest_File>(None)</Manifest_File>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
