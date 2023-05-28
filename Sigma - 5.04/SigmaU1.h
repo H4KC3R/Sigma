@@ -304,6 +304,7 @@ __published:	// IDE-managed Components
 	TComboBox *ComboBoxMainPoint;
 	TLabel *Label65;
 	TComboBox *ComboBox1;
+	TButton *SelectDarkFramesBtn;
 	void __fastcall IniSave(String dir);
 	void __fastcall CheckBox1Click(TObject *Sender);
 	void __fastcall CheckBox2Click(TObject *Sender);
@@ -365,6 +366,7 @@ __published:	// IDE-managed Components
 	void __fastcall EditBaricChange(TObject *Sender);
 	void __fastcall CheckBoxNFClick(TObject *Sender);
 	void __fastcall CheckBox12Click(TObject *Sender);
+	void __fastcall SelectDarkFramesBtnClick(TObject *Sender);
 
 
 private:	// User declarations

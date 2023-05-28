@@ -5610,7 +5610,7 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 	ini->WriteBool  ("Sigma-options","CheckBin",CheckBox2->Checked);
 	ini->WriteString("Sigma-options","kofSKO2",Edit28->Text);
 	ini->WriteString("Sigma-options","pixMaxIs",Edit15->Text);
-	ini->WriteString("Sigma-options","pixMini",Edit16->Text);
+	ini->WriteString("Sigma-options","pixMinIs",Edit16->Text);
 	ini->WriteBool  ("Sigma-options","CheckMostLight",CheckBox4->Checked);
 	ini->WriteInteger("Sigma-options","Check_Is-pix",ComboBoxPixIs->ItemIndex);
 	ini->WriteString("Sigma-options","forLG_step",Edit24->Text);
@@ -6259,6 +6259,81 @@ void __fastcall TForm1::CheckBox12Click(TObject *Sender)
 		Edit39 -> Enabled = true;
 		Edit38 -> Color = clWindow;
 		Edit39 -> Color = clWindow;
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::SelectDarkFramesBtnClick(TObject *Sender)
+{
+    //Прочтение и усреднение
+	if (OpenDialog6->Execute())
+	{
+		FILE * fileBF;
+
+		ProgressBar1->Max = OpenDialog6->Files->Count;
+		ProgressBar1->Position = 0;
+		StatusBar1->Panels->Items[0]->Text = IntToStr(0) + " / " + IntToStr(OpenDialog6->Files->Count);
+		Application->ProcessMessages();
+
+		//Выделение памяти
+		BlackKadrWindow = new WORD*[StrToInt(Form1->Edit9->Text)];
+		for (int i = 0; i < StrToInt(Form1->Edit9->Text); i++)
+			BlackKadrWindow[i] = new WORD[StrToInt(Form1->Edit9->Text)];
+
+			   BlackKadr = new WORD*[StrToInt(Form1->Edit2->Text)];
+		int  **BufBlKadr = new int* [StrToInt(Form1->Edit2->Text)];
+
+		for (int i = 0; i < StrToInt(Form1->Edit2->Text); i++)
+		{
+			BlackKadr[i] = new WORD[StrToInt(Form1->Edit1->Text)];
+			BufBlKadr[i] = new int [StrToInt(Form1->Edit1->Text)];
+		}
+
+		//Очищение кадров
+		for (int i = 0; i < StrToInt(Form1->Edit2->Text); i++)
+		for (int j = 0; j < StrToInt(Form1->Edit1->Text); j++)
+		{
+			BlackKadr[i][j] = 0;
+			BufBlKadr[i][j] = 0;
+		}
+
+		StatusBar1->Panels->Items[2]->Text = "";
+		StatusBar1->Panels->Items[3]->Text = "";
+
+		for (int ia = 0; ia < OpenDialog6->Files->Count; ia++)
+		{
+			fileBF = fopen(AnsiString(OpenDialog6->Files->Strings[ia]).c_str(), "rb");
+			for (int j = 0; j < StrToInt(Form1->Edit2->Text); j++)
+				fread(BlackKadr[j], sizeof(WORD), StrToInt(Form1->Edit1->Text), fileBF);
+			fclose(fileBF);
+
+			for (int i = 0; i < StrToInt(Form1->Edit2->Text); i++)
+			for (int j = 0; j < StrToInt(Form1->Edit1->Text); j++)
+			{
+				BufBlKadr[i][j] += BlackKadr[i][j];
+				BlackKadr[i][j] = 0;
+			}
+			ProgressBar1->Position = ia+1;
+			StatusBar1->Panels->Items[0]->Text = IntToStr(ia+1) + " / " + IntToStr(OpenDialog6->Files->Count);
+			Application->ProcessMessages();
+		}
+
+		for (int i = 0; i < StrToInt(Form1->Edit2->Text); i++)
+		for (int j = 0; j < StrToInt(Form1->Edit1->Text); j++)
+		{
+			BlackKadr[i][j] = (WORD) ( (float)((BufBlKadr[i][j] / (float) OpenDialog6->Files->Count) + 0.5) );
+		}
+
+		BKflag = true;
+		LabelBFstate->Caption = "Выбрано файлов:  " + IntToStr(OpenDialog6->Files->Count);
+		CheckBoxCloseBF->Checked = true;
+		CheckBoxCloseBF->Visible = true;
+		ButtonBFsave->Visible = true;
+
+		for (int i = 0; i < StrToInt(Form1->Edit2->Text); i++)
+		delete [] BufBlKadr[i];
+		delete [] BufBlKadr;
 	}
 }
 //---------------------------------------------------------------------------

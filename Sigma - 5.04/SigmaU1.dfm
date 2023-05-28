@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Sigma - 5.04'
-  ClientHeight = 602
-  ClientWidth = 844
+  Caption = 'Sigma - 5.05 Reforged'
+  ClientHeight = 601
+  ClientWidth = 840
   Color = clInactiveBorder
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -3135,8 +3135,8 @@ object Form1: TForm1
   OnResize = FormResize
   OnShow = FormShow
   DesignSize = (
-    844
-    602)
+    840
+    601)
   TextHeight = 16
   object Label18: TLabel
     Left = 16
@@ -3176,7 +3176,7 @@ object Form1: TForm1
   end
   object Label65: TLabel
     Left = 688
-    Top = 561
+    Top = 560
     Width = 92
     Height = 16
     Anchors = [akLeft, akBottom]
@@ -3897,9 +3897,9 @@ object Form1: TForm1
     OnMouseLeave = Button1MouseLeave
   end
   object Button4: TButton
-    Left = 7
-    Top = 547
-    Width = 129
+    Left = 8
+    Top = 543
+    Width = 105
     Height = 33
     Caption = #1051#1086#1082#1072#1083#1080#1079#1072#1094#1080#1103
     Font.Charset = DEFAULT_CHARSET
@@ -3928,9 +3928,9 @@ object Form1: TForm1
     Text = 'C:\Cybertron\Programms'
   end
   object Button5: TButton
-    Left = 142
-    Top = 547
-    Width = 129
+    Left = 243
+    Top = 543
+    Width = 79
     Height = 33
     Caption = #1057#1080#1075#1084#1072
     Font.Charset = DEFAULT_CHARSET
@@ -3946,8 +3946,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 583
-    Width = 844
+    Top = 582
+    Width = 840
     Height = 19
     Panels = <
       item
@@ -3973,16 +3973,16 @@ object Form1: TForm1
   end
   object ProgressBar1: TProgressBar
     Left = 100
-    Top = 583
-    Width = 459
+    Top = 582
+    Width = 455
     Height = 20
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
   end
   object Button6: TButton
-    Left = 277
-    Top = 547
-    Width = 111
+    Left = 328
+    Top = 543
+    Width = 60
     Height = 33
     Caption = #1054#1090#1095#1077#1090
     Font.Charset = DEFAULT_CHARSET
@@ -3999,8 +3999,8 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 491
     Top = 38
-    Width = 353
-    Height = 513
+    Width = 349
+    Height = 512
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
@@ -4069,7 +4069,7 @@ object Form1: TForm1
   end
   object CheckBox8: TCheckBox
     Left = 497
-    Top = 560
+    Top = 559
     Width = 176
     Height = 17
     Anchors = [akLeft, akBottom]
@@ -4382,9 +4382,9 @@ object Form1: TForm1
         end
       end
       object Edit15: TEdit
-        Left = 110
+        Left = 115
         Top = 424
-        Width = 49
+        Width = 42
         Height = 24
         TabOrder = 6
         Text = '2000'
@@ -5475,7 +5475,7 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 786
-    Top = 557
+    Top = 556
     Width = 60
     Height = 24
     Anchors = [akLeft, akBottom]
@@ -5488,6 +5488,15 @@ object Form1: TForm1
       '3 tab'
       '4 tab'
       '5 tab')
+  end
+  object SelectDarkFramesBtn: TButton
+    Left = 119
+    Top = 543
+    Width = 118
+    Height = 33
+    Caption = #1058#1077#1084#1085#1086#1074#1099#1077' '#1050#1072#1076#1088#1099
+    TabOrder = 23
+    OnClick = SelectDarkFramesBtnClick
   end
   object MainMenu1: TMainMenu
     BiDiMode = bdLeftToRight
