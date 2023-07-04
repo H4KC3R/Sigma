@@ -1935,6 +1935,7 @@ void ReportSort(FullSigmaTable *FullSigmaFS, int MeterFS, int PorogPxFS,
 				SBoxXY *BoxXYFS, int *NomBoxXYFS, SBoxXY *BoxMSFS, int *NomBoxMSFS, SBoxXY *BoxMMFS, int *NomBoxMMFS)
 {
 
+	float EPSILON = 0.0001;
 	int i, f, jj;
 	bool flagFS;
 
@@ -1971,11 +1972,17 @@ void ReportSort(FullSigmaTable *FullSigmaFS, int MeterFS, int PorogPxFS,
 		flagFS = false;
 		for (i = 0; i < *NomBoxMSFS; i++)
 		{
-			if ( ((FullSigmaFS[f].ms + 1) >= BoxMSFS[i].ms) && ((FullSigmaFS[f].ms - 1) <= BoxMSFS[i].ms) )
-				 {
-					BoxMSFS[i].N++;
-					flagFS = true;
-				 }
+			if(std::fabs(FullSigmaFS[f].ms - BoxMSFS[i].ms) < EPSILON)
+			{
+				BoxMSFS[i].N++;
+				flagFS = true;
+			}
+			/// А что если у нас есть уже 125 мс, а мы хотим добавить 124, плохая проверка
+			//if ( ((FullSigmaFS[f].ms + 1) >= BoxMSFS[i].ms) && ((FullSigmaFS[f].ms - 1) <= BoxMSFS[i].ms) )
+			//	 {
+			//		BoxMSFS[i].N++;
+			//		flagFS = true;
+			//	 }
 			 else
 			 {
 				if (((i+1) == *NomBoxMSFS) && (flagFS == false))
@@ -4263,9 +4270,9 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 				if ( ((FullSigma[ifile].x + PorogPx) >= BoxXY[i].x) && ((FullSigma[ifile].x - PorogPx) <= BoxXY[i].x) &&
 					 ((FullSigma[ifile].y + PorogPx) >= BoxXY[i].y) && ((FullSigma[ifile].y - PorogPx) <= BoxXY[i].y))
 				{
-					for (j = 0; j < NomBoxMS; j++)
-					if (FullSigma[ifile].ms < (BoxMS[j].ms+1) && FullSigma[ifile].ms > (BoxMS[j].ms-1))
-					{
+					for (j = 0; j < NomBoxMS; j++) {
+						if (FullSigma[ifile].ms < (BoxMS[j].ms+1) && FullSigma[ifile].ms > (BoxMS[j].ms-1))
+						{
 
 						ConverMM = (FullSigma[ifile].mm - StrToFloat(Edit18->Text))*(StrToFloat(Edit45->Text)*StrToFloat(Edit45->Text))/(StrToFloat(Edit46->Text)*StrToFloat(Edit46->Text));
 						Chart1->Series[0]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigX, FloatToStr(FixRoundTo(FullSigma[ifile].mm,-3))+"\r\n"+FloatToStr(FixRoundTo(ConverMM,-3)), BoxMS[j].ColGraf);
@@ -4277,6 +4284,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 //						PointSeries[0]->AddXY(FullSigma[ifile].mm,FullSigma[ifile].SigY, FullSigma[ifile].mm, (int)FullSigma[ifile].ms*10);
 //						Chart1->Series[5]->AddXY(FullSigma[ifile].mm,AprocRezX[i].C+AprocRezX[i].B*FullSigma[ifile].mm+AprocRezX[i].A*FullSigma[ifile].mm*FullSigma[ifile].mm, FloatToStr(FullSigma[ifile].mm)+"\r\n"+FloatToStr(RoundTo(ConverMM,-3)), RGB (48,100,169));
 //						Chart1->Series[6]->AddXY(FullSigma[ifile].mm,AprocRezY[i].C+AprocRezY[i].B*FullSigma[ifile].mm+AprocRezY[i].A*FullSigma[ifile].mm*FullSigma[ifile].mm, FloatToStr(FullSigma[ifile].mm)+"\r\n"+FloatToStr(RoundTo(ConverMM,-3)), RGB (191,43,69));
+						}
 					}
 				}
 				ProgressBar1->Position++;
