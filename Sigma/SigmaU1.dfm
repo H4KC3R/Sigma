@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Sigma - 5.05 Reforged'
-  ClientHeight = 573
-  ClientWidth = 818
+  ClientHeight = 572
+  ClientWidth = 814
   Color = clInactiveBorder
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -3135,8 +3135,8 @@ object Form1: TForm1
   OnResize = FormResize
   OnShow = FormShow
   DesignSize = (
-    818
-    573)
+    814
+    572)
   TextHeight = 16
   object Label18: TLabel
     Left = 16
@@ -3176,7 +3176,7 @@ object Form1: TForm1
   end
   object Label65: TLabel
     Left = 688
-    Top = 532
+    Top = 531
     Width = 92
     Height = 16
     Anchors = [akLeft, akBottom]
@@ -3946,8 +3946,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 554
-    Width = 818
+    Top = 553
+    Width = 814
     Height = 19
     Panels = <
       item
@@ -3973,8 +3973,8 @@ object Form1: TForm1
   end
   object ProgressBar1: TProgressBar
     Left = 100
-    Top = 554
-    Width = 433
+    Top = 553
+    Width = 429
     Height = 20
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
@@ -3999,8 +3999,8 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 491
     Top = 38
-    Width = 327
-    Height = 484
+    Width = 323
+    Height = 483
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
@@ -4069,7 +4069,7 @@ object Form1: TForm1
   end
   object CheckBox8: TCheckBox
     Left = 497
-    Top = 531
+    Top = 530
     Width = 176
     Height = 17
     Anchors = [akLeft, akBottom]
@@ -4081,7 +4081,7 @@ object Form1: TForm1
     Top = 8
     Width = 481
     Height = 508
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -5475,7 +5475,7 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 786
-    Top = 528
+    Top = 527
     Width = 60
     Height = 24
     Anchors = [akLeft, akBottom]

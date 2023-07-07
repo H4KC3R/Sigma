@@ -266,12 +266,13 @@ int MNK1pow (double *x, double *y, int n0, int nk, double *a,double *b)
 		y1=y1+y[i];
 		y1x1=y1x1+(y[i])*(x[i]);
 	}
-	bb=(+y1x1-x1*y1/n)/(-x1*x1/n+x2);
-	aa=y1/n-bb*x1/n;
-	*(a)= aa;
-	*(b)= bb;
-	
-	if (fabs(-x1*x1/n+x2)>0.001) return 0;
+	if ((n != 0) && fabs(-x1*x1/n+x2)>0.001){
+		bb=(+y1x1-x1*y1/n)/(-x1*x1/n+x2);
+		aa=y1/n-bb*x1/n;
+		*(a)= aa;
+		*(b)= bb;
+		return 0;
+	}
 	else return (-1);
 }
 
