@@ -4369,7 +4369,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 								+ "   " + Edit32->Text + " №"
 								+ Edit33->Text + "  ("+ buffDate +")").c_str();
 
-			Chart1->PaintTo(bm->Canvas->Handle,0,0);
+			//Chart1->PaintTo(bm->Canvas->Handle,0,0);
 			NameGraf = (Edit23->Text+"\\Graf_"+IntToStr(i+1)+"_"+FloatToStr(((int)(BoxXY[i].x*1000))/1000) + "x"+ FloatToStr(((int)(BoxXY[i].y*1000))/1000)+ " " + bufftime + ".bmp");
 			Chart1->SaveToBitmapFile(NameGraf);
 			AddPicture(NameGraf);
