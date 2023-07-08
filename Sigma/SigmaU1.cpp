@@ -4117,17 +4117,22 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		for (i = 0; i < NomBoxXY; i++)
 		{
 			SigmaInfX = FindOneRootOfEquation(InfCol, MNK_deg, AprocRezX[i].K);
+			double bubbleRadius = fabs(SigmaInfX) * BubbleSize;
 
 			if ( (SigmaMin <= SigmaInfX) && (SigmaMax >= SigmaInfX) )
 			{
-				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfX * BubbleSize, FloatToStr(FixRoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfX,-2)),RGB (0,204,0));
+				Series3->AddBubble(BoxXY[i].x,
+									BoxXY[i].y,
+									bubbleRadius,
+									FloatToStr(FixRoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3))
+									+ "\r\n" + FloatToStr(FixRoundTo(SigmaInfX,-2)),RGB (0,204,0));
 			}
 			else
 			{
 				if (AprocRezX[i].X == 1000)
-					Series4->AddBubble(BoxXY[i].x, BoxXY[i].y, SigmaInfX * BubbleSize,"-",RGB (255,77,0));
+					Series4->AddBubble(BoxXY[i].x, BoxXY[i].y, bubbleRadius,"-",RGB (255,77,0));
 				else
-					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfX * BubbleSize, FloatToStr(FixRoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfX,-2)),RGB (255,77,0));
+					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, bubbleRadius, FloatToStr(FixRoundTo((AprocRezX[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfX,-2)),RGB (255,77,0));
 			}
 		}
 
@@ -4169,17 +4174,18 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 		for (i = 0; i < NomBoxXY; i++)
 		{
 			SigmaInfY = FindOneRootOfEquation(InfCol, MNK_deg, AprocRezY[i].K);
+			double bubbleRadius = fabs(SigmaInfY) * BubbleSize;
 
 			if ( (SigmaMin <= SigmaInfY) && (SigmaMax >= SigmaInfY) )
 			{
-				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfY * BubbleSize, FloatToStr(FixRoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfY,-2)),RGB (0,204,0));
+				Series3->AddBubble(BoxXY[i].x,BoxXY[i].y, bubbleRadius, FloatToStr(FixRoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfY,-2)),RGB (0,204,0));
 			}
 			else
 			{
 				if (AprocRezY[i].X == 1000)
-					Series4->AddBubble(BoxXY[i].x, BoxXY[i].y, SigmaInfY * BubbleSize,"-",RGB (255,77,0));
+					Series4->AddBubble(BoxXY[i].x, BoxXY[i].y, bubbleRadius,"-",RGB (255,77,0));
 				else
-					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, SigmaInfY * BubbleSize, FloatToStr(FixRoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfY,-2)),RGB (255,77,0));
+					Series4->AddBubble(BoxXY[i].x,BoxXY[i].y, bubbleRadius, FloatToStr(FixRoundTo((AprocRezY[i].X - InfCol)*(FocBkz*FocBkz)/(FocCol*FocCol),-3)) + "\r\n" + FloatToStr(FixRoundTo(SigmaInfY,-2)),RGB (255,77,0));
 			}
 		}
 
@@ -4354,10 +4360,15 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 //					}
 //				}
 			}
-
 			Chart1->Refresh();
 			Application->ProcessMessages();
-			Chart1->Title->Text->Text = AnsiString(FloatToStr(((int)(BoxXY[i].x*1000))/1000) + "x"+ FloatToStr(((int)(BoxXY[i].y*1000))/1000) + "   " + Edit32->Text + " №" + Edit33->Text + "  ("+ buffDate +")").c_str();
+
+
+			Chart1->Title->Text->Text = AnsiString(FloatToStr(((int)(BoxXY[i].x*1000))/1000) + "x"
+								+ FloatToStr(((int)(BoxXY[i].y*1000))/1000)
+								+ "   " + Edit32->Text + " №"
+								+ Edit33->Text + "  ("+ buffDate +")").c_str();
+
 			Chart1->PaintTo(bm->Canvas->Handle,0,0);
 			NameGraf = (Edit23->Text+"\\Graf_"+IntToStr(i+1)+"_"+FloatToStr(((int)(BoxXY[i].x*1000))/1000) + "x"+ FloatToStr(((int)(BoxXY[i].y*1000))/1000)+ " " + bufftime + ".bmp");
 			Chart1->SaveToBitmapFile(NameGraf);
@@ -4508,6 +4519,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender)    //Отчет
 	//				}
 				}
 
+				Chart1->Title->Text->Clear();
 				Chart1->Refresh();
 				Application->ProcessMessages();
 				Chart1->Title->Text->Text = AnsiString(FloatToStr(((int)(BoxXY[i].x*1000))/1000) + "x"+ FloatToStr(((int)(BoxXY[i].y*1000))/1000) + "   " + Edit32->Text + " №" + Edit33->Text + "  ("+ buffDate +")").c_str();

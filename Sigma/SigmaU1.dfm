@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Sigma - 5.05 Reforged'
-  ClientHeight = 572
-  ClientWidth = 814
+  ClientHeight = 618
+  ClientWidth = 862
   Color = clInactiveBorder
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -3135,8 +3135,8 @@ object Form1: TForm1
   OnResize = FormResize
   OnShow = FormShow
   DesignSize = (
-    814
-    572)
+    862
+    618)
   TextHeight = 16
   object Label18: TLabel
     Left = 16
@@ -3176,7 +3176,7 @@ object Form1: TForm1
   end
   object Label65: TLabel
     Left = 688
-    Top = 531
+    Top = 577
     Width = 92
     Height = 16
     Anchors = [akLeft, akBottom]
@@ -3946,8 +3946,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 553
-    Width = 814
+    Top = 599
+    Width = 862
     Height = 19
     Panels = <
       item
@@ -3970,14 +3970,18 @@ object Form1: TForm1
         Width = 50
       end>
     OnDrawPanel = StatusBar1DrawPanel
+    ExplicitTop = 550
+    ExplicitWidth = 802
   end
   object ProgressBar1: TProgressBar
     Left = 100
-    Top = 553
-    Width = 429
+    Top = 599
+    Width = 477
     Height = 20
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
+    ExplicitTop = 550
+    ExplicitWidth = 417
   end
   object Button6: TButton
     Left = 328
@@ -3999,14 +4003,16 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 491
     Top = 38
-    Width = 323
-    Height = 483
+    Width = 371
+    Height = 529
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
     ScrollBars = ssBoth
     TabOrder = 1
     OnClick = Memo1Click
+    ExplicitWidth = 311
+    ExplicitHeight = 480
   end
   object DirectoryListBox1: TDirectoryListBox
     Left = 475
@@ -4069,19 +4075,20 @@ object Form1: TForm1
   end
   object CheckBox8: TCheckBox
     Left = 497
-    Top = 530
+    Top = 576
     Width = 176
     Height = 17
     Anchors = [akLeft, akBottom]
     Caption = #1042#1099#1074#1086#1076#1080#1090#1100' '#1090#1086#1083#1100#1082#1086' '#1086#1096#1080#1073#1082#1080
     TabOrder = 16
+    ExplicitTop = 527
   end
   object PageControl1: TPageControl
     Left = 8
     Top = 8
     Width = 481
     Height = 508
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -5475,7 +5482,7 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 786
-    Top = 527
+    Top = 573
     Width = 60
     Height = 24
     Anchors = [akLeft, akBottom]
@@ -5488,6 +5495,7 @@ object Form1: TForm1
       '3 tab'
       '4 tab'
       '5 tab')
+    ExplicitTop = 524
   end
   object SelectDarkFramesBtn: TButton
     Left = 119
