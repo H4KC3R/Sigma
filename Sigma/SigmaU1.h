@@ -305,6 +305,7 @@ __published:	// IDE-managed Components
 	TLabel *Label65;
 	TComboBox *ComboBox1;
 	TButton *SelectDarkFramesBtn;
+	TButton *allTogetherButton;
 	void __fastcall IniSave(String dir);
 	void __fastcall CheckBox1Click(TObject *Sender);
 	void __fastcall CheckBox2Click(TObject *Sender);
@@ -367,7 +368,11 @@ __published:	// IDE-managed Components
 	void __fastcall CheckBoxNFClick(TObject *Sender);
 	void __fastcall CheckBox12Click(TObject *Sender);
 	void __fastcall SelectDarkFramesBtnClick(TObject *Sender);
+	void __fastcall allTogetherButtonClick(TObject *Sender);
 
+    bool __fastcall localizationStep(AnsiString resultFileNames[], int* size);
+	bool __fastcall sigmaStep(AnsiString resultFileNames[], int size, AnsiString* sigmaResultFileName);
+	bool __fastcall reportResult(AnsiString sigmaResultFileName);
 
 private:	// User declarations
 public:		// User declarations

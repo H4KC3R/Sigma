@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Sigma - 5.05 Reforged'
-  ClientHeight = 616
-  ClientWidth = 854
+  ClientHeight = 646
+  ClientWidth = 871
   Color = clInactiveBorder
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -3135,8 +3135,8 @@ object Form1: TForm1
   OnResize = FormResize
   OnShow = FormShow
   DesignSize = (
-    854
-    616)
+    871
+    646)
   TextHeight = 16
   object Label18: TLabel
     Left = 16
@@ -3176,7 +3176,7 @@ object Form1: TForm1
   end
   object Label65: TLabel
     Left = 688
-    Top = 575
+    Top = 605
     Width = 92
     Height = 16
     Anchors = [akLeft, akBottom]
@@ -3946,8 +3946,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 597
-    Width = 854
+    Top = 627
+    Width = 871
     Height = 19
     Panels = <
       item
@@ -3970,14 +3970,18 @@ object Form1: TForm1
         Width = 50
       end>
     OnDrawPanel = StatusBar1DrawPanel
+    ExplicitTop = 614
+    ExplicitWidth = 865
   end
   object ProgressBar1: TProgressBar
     Left = 100
-    Top = 597
-    Width = 469
+    Top = 627
+    Width = 486
     Height = 20
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 4
+    ExplicitTop = 614
+    ExplicitWidth = 480
   end
   object Button6: TButton
     Left = 328
@@ -3997,16 +4001,18 @@ object Form1: TForm1
     OnMouseLeave = Button6MouseLeave
   end
   object Memo1: TMemo
-    Left = 491
-    Top = 38
-    Width = 363
-    Height = 527
+    Left = 495
+    Top = 42
+    Width = 380
+    Height = 557
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
     ScrollBars = ssBoth
     TabOrder = 1
     OnClick = Memo1Click
+    ExplicitWidth = 374
+    ExplicitHeight = 544
   end
   object DirectoryListBox1: TDirectoryListBox
     Left = 475
@@ -4069,12 +4075,13 @@ object Form1: TForm1
   end
   object CheckBox8: TCheckBox
     Left = 497
-    Top = 574
+    Top = 604
     Width = 176
     Height = 17
     Anchors = [akLeft, akBottom]
     Caption = #1042#1099#1074#1086#1076#1080#1090#1100' '#1090#1086#1083#1100#1082#1086' '#1086#1096#1080#1073#1082#1080
     TabOrder = 16
+    ExplicitTop = 591
   end
   object PageControl1: TPageControl
     Left = 8
@@ -5215,7 +5222,7 @@ object Form1: TForm1
           end
           object Label34: TLabel
             Left = 42
-            Top = 140
+            Top = 143
             Width = 79
             Height = 16
             Caption = #1064#1072#1075' '#1087#1086' '#1086#1089#1103#1084':'
@@ -5353,8 +5360,8 @@ object Form1: TForm1
             Text = '400'
           end
           object Edit38: TEdit
-            Left = 125
-            Top = 137
+            Left = 127
+            Top = 143
             Width = 40
             Height = 24
             TabOrder = 9
@@ -5362,7 +5369,7 @@ object Form1: TForm1
           end
           object Edit39: TEdit
             Left = 171
-            Top = 137
+            Top = 143
             Width = 40
             Height = 24
             TabOrder = 10
@@ -5370,7 +5377,7 @@ object Form1: TForm1
           end
           object CheckBox12: TCheckBox
             Left = 215
-            Top = 139
+            Top = 150
             Width = 58
             Height = 17
             Caption = #1054#1090#1082#1083
@@ -5475,7 +5482,7 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 786
-    Top = 571
+    Top = 601
     Width = 60
     Height = 24
     Anchors = [akLeft, akBottom]
@@ -5488,6 +5495,7 @@ object Form1: TForm1
       '3 tab'
       '4 tab'
       '5 tab')
+    ExplicitTop = 588
   end
   object SelectDarkFramesBtn: TButton
     Left = 119
@@ -5497,6 +5505,21 @@ object Form1: TForm1
     Caption = #1058#1077#1084#1085#1086#1074#1099#1077' '#1050#1072#1076#1088#1099
     TabOrder = 23
     OnClick = SelectDarkFramesBtnClick
+  end
+  object allTogetherButton: TButton
+    Left = 8
+    Top = 582
+    Width = 380
+    Height = 35
+    Caption = #1042#1089#1077' '#1089#1088#1072#1079#1091
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -25
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 24
+    OnClick = allTogetherButtonClick
   end
   object MainMenu1: TMainMenu
     BiDiMode = bdLeftToRight
@@ -5725,8 +5748,8 @@ object Form1: TForm1
       000000000000}
   end
   object SaveDialog2: TSaveDialog
-    Left = 744
-    Top = 368
+    Left = 720
+    Top = 392
   end
   object OpenDialogNOP: TOpenDialog
     Left = 96
