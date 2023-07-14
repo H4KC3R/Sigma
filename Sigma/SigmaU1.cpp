@@ -9139,18 +9139,28 @@ void __fastcall TForm1::allTogetherButtonClick(TObject *Sender) {
     int size = 0;
 	bool operationResult =  localizationStep(resultFileNames, &size);
 
-	if(!operationResult)
+	if(!operationResult){
+		Ostanov = false;
 		return;
+	}
 
 	AnsiString sigmaResultFileName;
 	operationResult =  sigmaStep(resultFileNames, size, &sigmaResultFileName);
 
-	if(!operationResult)
+	if(!operationResult){
+		Ostanov = false;
 		return;
+	}
+
 
     operationResult =  reportResult(sigmaResultFileName);
-	if(!operationResult)
+	if(!operationResult) {
+		Ostanov = false;
 		ShowMessage("Ошибка при формировании отчета");
+		return;
+	}
+
+	Ostanov = false;
 }
 
 //---------------------------------------------------------------------------
