@@ -1,2 +1,2 @@
 # Sigma
-IKI
+IDE: C++ Builder 
